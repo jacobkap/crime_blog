@@ -53,7 +53,7 @@ defaultContentLanguageInSubdir = false
   organizations = [ { name = "University of Pennsylvania, Department of Criminology", url = "" } ]
 
   gravatar = false  # Get your avatar from Gravatar.com? (true/false)
-  email = "jacobkap@sas.upenn.edu"
+  email = "jkkaplan6@gmail.com"
   github = "https://github.com/jacobkap"
 
   # Enable Keybase in Contact widget by entering your keybase.io username.
