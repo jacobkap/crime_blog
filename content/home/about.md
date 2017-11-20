@@ -5,36 +5,34 @@ active = true
 date = "2016-04-20T00:00:00"
 
 # Order that this section will appear in.
-weight = 5
+weight = 500
 
 # List your academic interests.
 [interests]
   interests = [
-    "Artificial Intelligence",
-    "Computational Linguistics",
-    "Information Retrieval"
+    "Crime Prevention Through Environmental Design",
+    "Improving access to data",
+    "Effect of marijuana legalization on violent crime"
   ]
 
 # List your qualifications (such as academic degrees).
 [[education.courses]]
-  course = "PhD in Artificial Intelligence"
-  institution = "Stanford University"
-  year = 2012
+  course = "PhD in Criminology"
+  institution = "University of Pennsylvania"
+  year = "Expected Graduation 2020"
 
 [[education.courses]]
-  course = "MEng in Artificial Intelligence"
-  institution = "Massachusetts Institute of Technology"
-  year = 2009
+  course = "MS in Criminology"
+  institution = "University of Pennsylvania"
+  year = 2016
 
 [[education.courses]]
-  course = "BSc in Artificial Intelligence"
-  institution = "Massachusetts Institute of Technology"
-  year = 2008
+  course = "BS in Criminal Justice"
+  institution = "California State University, Sacramento"
+  year = 2015
  
 +++
 
 # Biography
 
-Lena Smith is a professor of artificial intelligence at the Stanford AI Lab. Her research interests include distributed robotics, mobile computing and programmable matter. She leads the Robotic Neurobiology group, which develops self-reconfiguring robots, systems of self-organizing robots, and mobile sensor networks.
-
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed neque elit, tristique placerat feugiat ac, facilisis vitae arcu. Proin eget egestas augue. Praesent ut sem nec arcu pellentesque aliquet. Duis dapibus diam vel metus tempus vulputate. 
+Jacob Kaplan is a PhD student studying criminology at the University of Pennsylvania. His research interests include Crime Prevention Through Environmental Design, providing tools to make data access easier, and the impact of marijuana legalization.
