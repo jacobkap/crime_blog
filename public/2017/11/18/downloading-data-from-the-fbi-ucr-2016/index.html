@@ -47,6 +47,19 @@
   
 
   
+    <script>
+      window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+      ga('create', 'UA-99359926-2', 'auto');
+      ga('require', 'eventTracker');
+      ga('require', 'outboundLinkTracker');
+      ga('require', 'urlChangeTracker');
+      ga('send', 'pageview');
+    </script>
+    <script async src="//www.google-analytics.com/analytics.js"></script>
+    
+    <script async src="https://cdnjs.cloudflare.com/ajax/libs/autotrack/2.4.1/autotrack.js" integrity="sha512-HUmooslVKj4m6OBu0OgzjXXr+QuFYy/k7eLI5jdeEy/F4RSgMn6XRWRGkFi5IFaFgy7uFTkegp3Z0XnJf3Jq+g==" crossorigin="anonymous"></script>
+    
+  
 
   
   <link rel="alternate" href="/index.xml" type="application/rss+xml" title="Crime By The Numbers">
@@ -239,7 +252,7 @@
 
 
       <div class="article-style" itemprop="articleBody">
-        <p>The FBI has recently (September 2017) released the raw files for UCR data for 2016. As usual, these files are in fixed-width ASCII files and do not come with a usable setup file. To make this data accessible, I made those setup files using the codebook provided by the FBI along with the raw data. Using the R package asciiSetupReader, I read the data into R and saved it in a number of data formats. These cleaned files are now available at openICPSR. Below is the links to the openICPSR page for each of the files as well as the formats available. After that is a brief methodology section for how I created the setup files and checked for accuracy.</p>
+        <p>The FBI has recently (September 2017) released the raw files for UCR data for 2016. As usual, these files are in fixed-width ASCII files and do not come with a usable setup file. To make this data accessible, I made those setup files using the codebook provided by the FBI along with the raw data. Using the R package asciiSetupReader, I read the data into R and saved it in a number of data formats. These cleaned files are now available at openICPSR. Below are the links to the openICPSR page for each of the files as well as the formats available. After that is a brief methodology section for how I created the setup files and checked for accuracy.</p>
 <div id="files-available" class="section level2">
 <h2>Files Available</h2>
 <p><a href="https://www.openicpsr.org/openicpsr/project/101126/version/V1/view">Arrests by Age, Sex, and Race, 2016</a></p>
