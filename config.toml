@@ -1,8 +1,8 @@
 baseurl = "/"  # End your URL with a `/` trailing slash, e.g. `https://example.com/`.
-title = "Academic"
-copyright = "&copy; 2017 Your Name"
-theme = "hugo-academic"
-enableEmoji = true
+title = "Crime By The Numbers"
+copyright = "&copy; 2017 Jacob Kaplan"
+theme = "hugo-academic-master"
+enableEmoji = false
 footnotereturnlinkcontents = "<sup>^</sup>"
 ignoreFiles = ["\\.Rmd$", "\\.Rmarkdown$", "_files$", "_cache$"]
 preserveTaxonomyNames = true
@@ -22,6 +22,9 @@ defaultContentLanguageInSubdir = false
   home = [ "HTML", "CSS", "RSS" ]
   section = [ "HTML", "RSS" ]
 
+[permalinks]
+    post = "/:year/:month/:day/:slug/"
+
 # Configure BlackFriday Markdown rendering.
 #   See: https://gohugo.io/readfiles/bfconfig/
 [blackfriday]
@@ -30,6 +33,9 @@ defaultContentLanguageInSubdir = false
   smartypants = true  # `false` disables all smart punctuation substitutions (e.g. smart quotes, dashes, fractions).
 
 [params]
+
+  description = "A website for learning about and using crime data."
+
   # Color theme.
   #   Choose from `default`, `ocean`, `forest`, `coffee`, or `dark`.
   color_theme = "default"
@@ -39,21 +45,16 @@ defaultContentLanguageInSubdir = false
   font = "default"
 
   # Your details.
-  name = "Lena Smith"
-  role = "Professor of Artificial Intelligence"
+  name = "Jacob Kaplan"
+  role = "PhD Student"
 
   # Organizations/Affiliations.
   #   Separate multiple entries with a comma, using the form: `[ {name="Org1", url=""}, {name="Org2", url=""} ]`.
-  organizations = [ { name = "Stanford University", url = "" } ]
+  organizations = [ { name = "University of Pennsylvania, Department of Criminology", url = "" } ]
 
   gravatar = false  # Get your avatar from Gravatar.com? (true/false)
-  avatar = "portrait.jpg"  # Specify an avatar image (in `static/img/` folder) or delete value to disable avatar.
-  email = "test@example.org"
-  address = "Building 1 Room 1, Stanford University, California, 90210, USA"
-  office_hours = "Monday 10:00 to 13:00 or email for appointment"
-  phone = "888 888 88 88"
-  skype = "echo123"
-  telegram = ""
+  email = "jacobkap@sas.upenn.edu"
+  github = "https://github.com/jacobkap"
 
   # Enable Keybase in Contact widget by entering your keybase.io username.
   keybase = ""
@@ -205,22 +206,17 @@ defaultContentLanguageInSubdir = false
   [[params.social]]
     icon = "envelope"
     icon_pack = "fa"
-    link = "mailto:test@example.org"
+    link = "mailto:jkkaplan6@gmail.com"
 
-  [[params.social]]
-    icon = "twitter"
-    icon_pack = "fa"
-    link = "//twitter.com/GeorgeCushen"
-
-  [[params.social]]
-    icon = "google-scholar"
-    icon_pack = "ai"
-    link = "https://scholar.google.co.uk/citations?user=sIwtMXoAAAAJ"
+#  [[params.social]]
+#    icon = "google-scholar"
+#    icon_pack = "ai"
+#    link = "https://scholar.google.co.uk/citations?user=sIwtMXoAAAAJ"
 
   [[params.social]]
     icon = "github"
     icon_pack = "fa"
-    link = "//github.com/gcushen"
+    link = "https://github.com/jacobkap"
 
 
 # Navigation Links
@@ -232,34 +228,36 @@ defaultContentLanguageInSubdir = false
   align_right = true
 
 [[menu.main]]
-  name = "Home"
-  url = "#about"
-  weight = 1
-
-[[menu.main]]
-  name = "Publications"
-  url = "#publications_selected"
-  weight = 2
-
-[[menu.main]]
   name = "Posts"
   url = "#posts"
+  weight = 1
+
+#[[menu.main]]
+#  name = "Projects"
+#  url = "#projects"
+#  weight = 2
+
+[[menu.main]]
+  name = "About"
+  url = "#about"
   weight = 3
 
-[[menu.main]]
-  name = "Projects"
-  url = "#projects"
-  weight = 4
+#[[menu.main]]
+#  name = "Publications"
+#  url = "#publications_selected"
+#  weight = 2
 
-[[menu.main]]
-  name = "Teaching"
-  url = "#teaching"
-  weight = 5
 
-[[menu.main]]
-  name = "Contact"
-  url = "#contact"
-  weight = 6
+
+#[[menu.main]]
+#  name = "Teaching"
+#  url = "#teaching"
+#  weight = 5
+
+#[[menu.main]]
+#  name = "Contact"
+#  url = "#contact"
+#  weight = 6
 
 # Taxonomies.
 [taxonomies]

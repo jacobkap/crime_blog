@@ -1,0 +1,35 @@
+---
+title: Downloading data from the FBI's UCR 2016
+author: Jacob Kaplan
+date: '2017-11-18'
+slug: downloading-data-from-the-fbi-ucr-2016
+categories:
+  - Data
+tags:
+  - UCR
+  - ICPSR
+  - Data
+  - FBI
+---
+
+
+
+<p>The FBI has recently (September 2017) released the raw files for UCR data for 2016. As usual, these files are in fixed-width ASCII files and do not come with a usable setup file. To make this data accessible, I made those setup files using the codebook provided by the FBI along with the raw data. Using the R package asciiSetupReader, I read the data into R and saved it in a number of data formats. These cleaned files are now available at openICPSR. Below is the links to the openICPSR page for each of the files as well as the formats available. After that is a brief methodology section for how I created the setup files and checked for accuracy.</p>
+<div id="files-available" class="section level2">
+<h2>Files Available</h2>
+<p><a href="https://www.openicpsr.org/openicpsr/project/101126/version/V1/view">Arrests by Age, Sex, and Race, 2016</a></p>
+<ul>
+<li>R<br />
+</li>
+<li>CSV<br />
+</li>
+<li>Stata<br />
+</li>
+<li>SPSS</li>
+</ul>
+</div>
+<div id="methodology" class="section level2">
+<h2>Methodology</h2>
+<p>When they send the raw data, the FBI includes a codebook for understanding the data. While close, this codebook is not a setup file. To read fixed-width ASCII files, you need a setup file explaining how to break up each row into the appropriate columns. I used the codebook to produce a setup file in the SPSS style. Then, using the package asciiSetupReader, read the raw data into R. This raw data was then saved as a few different file types (see above). ICPSR provides cleaned (i.e. not raw) data for UCR data up until 2015 (2016 is not yet available). I used this data to compare my setup reader against. I used asciiSetupReader to read in 2015 data and compared that against 2015 data from ICPSR to ensure it was accurate.</p>
+<p>For the exact code used to produce the setup files and check for accuracy, see my GitHub page <a href="https://github.com/jacobkap/UCR2016/tree/master/R">here</a>.</p>
+</div>
