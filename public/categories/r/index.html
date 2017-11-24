@@ -9,8 +9,8 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="theme" content="hugo-academic">
   <meta name="generator" content="Hugo 0.30.2" />
-  <meta name="author" content="Lena Smith">
-  <meta name="description" content="Professor of Artificial Intelligence">
+  <meta name="author" content="Jacob Kaplan">
+  <meta name="description" content="PhD Student">
 
   
   <link rel="alternate" hreflang="en-us" href="/categories/r/">
@@ -49,10 +49,23 @@
   
 
   
+    <script>
+      window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+      ga('create', 'UA-99359926-2', 'auto');
+      ga('require', 'eventTracker');
+      ga('require', 'outboundLinkTracker');
+      ga('require', 'urlChangeTracker');
+      ga('send', 'pageview');
+    </script>
+    <script async src="//www.google-analytics.com/analytics.js"></script>
+    
+    <script async src="https://cdnjs.cloudflare.com/ajax/libs/autotrack/2.4.1/autotrack.js" integrity="sha512-HUmooslVKj4m6OBu0OgzjXXr+QuFYy/k7eLI5jdeEy/F4RSgMn6XRWRGkFi5IFaFgy7uFTkegp3Z0XnJf3Jq+g==" crossorigin="anonymous"></script>
+    
+  
 
   
-  <link rel="alternate" href="/index.xml" type="application/rss+xml" title="Academic">
-  <link rel="feed" href="/index.xml" type="application/rss+xml" title="Academic">
+  <link rel="alternate" href="/index.xml" type="application/rss+xml" title="Crime By The Numbers">
+  <link rel="feed" href="/index.xml" type="application/rss+xml" title="Crime By The Numbers">
   
 
   <link rel="manifest" href="/site.webmanifest">
@@ -63,21 +76,18 @@
 
   <meta property="twitter:card" content="summary_large_image">
   
-  <meta property="twitter:site" content="@GeorgeCushen">
-  <meta property="twitter:creator" content="@GeorgeCushen">
-  
-  <meta property="og:site_name" content="Academic">
+  <meta property="og:site_name" content="Crime By The Numbers">
   <meta property="og:url" content="/categories/r/">
-  <meta property="og:title" content="R | Academic">
-  <meta property="og:description" content="Professor of Artificial Intelligence">
+  <meta property="og:title" content="R | Crime By The Numbers">
+  <meta property="og:description" content="PhD Student">
   <meta property="og:locale" content="en-us">
   
-  <meta property="og:updated_time" content="2015-07-23T21:13:14-05:00">
+  <meta property="og:updated_time" content="2017-11-21T00:00:00&#43;00:00">
   
 
   
 
-  <title>R | Academic</title>
+  <title>R | Crime By The Numbers</title>
 
 </head>
 <body id="top" data-spy="scroll" data-target="#toc" data-offset="71" >
@@ -96,7 +106,7 @@
         <span class="icon-bar"></span>
       </button>
       
-      <a class="navbar-brand" href="/">Academic</a>
+      <a class="navbar-brand" href="/">Crime By The Numbers</a>
     </div>
 
     
@@ -105,40 +115,6 @@
       
       
       <ul class="nav navbar-nav navbar-right">
-        
-
-        
-
-        
-          
-        
-
-        <li class="nav-item">
-          <a href="/#about">
-            
-            <span>Home</span>
-            
-          </a>
-        </li>
-
-        
-        
-
-        
-
-        
-          
-        
-
-        <li class="nav-item">
-          <a href="/#publications_selected">
-            
-            <span>Publications</span>
-            
-          </a>
-        </li>
-
-        
         
 
         
@@ -165,43 +141,9 @@
         
 
         <li class="nav-item">
-          <a href="/#projects">
+          <a href="/#about">
             
-            <span>Projects</span>
-            
-          </a>
-        </li>
-
-        
-        
-
-        
-
-        
-          
-        
-
-        <li class="nav-item">
-          <a href="/#teaching">
-            
-            <span>Teaching</span>
-            
-          </a>
-        </li>
-
-        
-        
-
-        
-
-        
-          
-        
-
-        <li class="nav-item">
-          <a href="/#contact">
-            
-            <span>Contact</span>
+            <span>About</span>
             
           </a>
         </li>
@@ -230,16 +172,11 @@
   
   
   <div>
-    <h2><a href="/post/2015-07-23-r-rmarkdown/">Hello R Markdown</a></h2>
+    <h2><a href="/2017/11/21/do-mexican-immigrants-cause-crime/">Do Mexican Immigrants Cause Crime?</a></h2>
     <div class="article-style">
       
-      R Markdown
-This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <a href="http://rmarkdown.rstudio.com" target="_blank">http://rmarkdown.rstudio.com</a>.
-You can embed an R code chunk like this:
-summary(cars)</p>
-
-<h2 id="speed-dist-min-4-0-min-2-00-1st-qu-12-0-1st-qu-26-00-median-15-0-median-36-00-mean-15-4-mean-42-98-3rd-qu">speed dist ## Min. : 4.0 Min. : 2.00 ## 1st Qu.:12.0 1st Qu.: 26.00 ## Median :15.0 Median : 36.00 ## Mean :15.4 Mean : 42.98 ## 3rd Qu.</h2>
-
+      There has been a lot of talk lately about immigration. In particular, about if immigrants cause crime in the cities they go to. Like a lot of controversial topics, this one is based mainly in anecdotes and exaggerations. Here is some data regarding the issue.
+In this post I look at the relationship between crime rates and Mexican immigrant population in counties between 1980 and 2010. For a full methodology and the R code used to analyze the data, see below.
       
     </div>
   </div>
@@ -253,7 +190,7 @@ summary(cars)</p>
   <div class="container">
     <p class="powered-by">
 
-      &copy; 2017 Your Name &middot; 
+      &copy; 2017 Jacob Kaplan &middot; 
 
       Powered by the
       <a href="https://sourcethemes.com/academic/" target="_blank" rel="noopener">Academic theme</a> for

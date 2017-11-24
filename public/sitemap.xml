@@ -5,6 +5,15 @@
     
     <url>
     
+      <loc>/2017/11/21/do-mexican-immigrants-cause-crime/</loc>
+      <lastmod>2017-11-21T00:00:00+00:00</lastmod>
+    </url>
+    
+  
+    
+    
+    <url>
+    
       <loc>/2017/11/18/downloading-data-from-the-fbi-ucr-2016/</loc>
       <lastmod>2017-11-18T00:00:00+00:00</lastmod>
     </url>
@@ -24,6 +33,26 @@
     <url>
     
       <loc>/categories/</loc>
+      <priority>0</priority>
+    </url>
+    
+  
+    
+    
+    <url>
+    
+      <loc>/tags/census/</loc>
+      <lastmod>2017-11-21T00:00:00+00:00</lastmod>
+      <priority>0</priority>
+    </url>
+    
+  
+    
+    
+    <url>
+    
+      <loc>/tags/crime/</loc>
+      <lastmod>2017-11-21T00:00:00+00:00</lastmod>
       <priority>0</priority>
     </url>
     
@@ -91,8 +120,18 @@
     
     <url>
     
+      <loc>/categories/r/</loc>
+      <lastmod>2017-11-21T00:00:00+00:00</lastmod>
+      <priority>0</priority>
+    </url>
+    
+  
+    
+    
+    <url>
+    
       <loc>/tags/</loc>
-      <lastmod>2017-11-18T00:00:00+00:00</lastmod>
+      <lastmod>2017-11-21T00:00:00+00:00</lastmod>
       <priority>0</priority>
     </url>
     
@@ -102,7 +141,7 @@
     <url>
     
       <loc>/tags/ucr/</loc>
-      <lastmod>2017-11-18T00:00:00+00:00</lastmod>
+      <lastmod>2017-11-21T00:00:00+00:00</lastmod>
       <priority>0</priority>
     </url>
     
