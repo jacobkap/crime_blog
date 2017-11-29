@@ -23,7 +23,7 @@ defaultContentLanguageInSubdir = false
   section = [ "HTML", "RSS" ]
 
 [permalinks]
-    post = "/:year/:month/:day/:slug/"
+    post = "/:slug/"
 
 # Configure BlackFriday Markdown rendering.
 #   See: https://gohugo.io/readfiles/bfconfig/

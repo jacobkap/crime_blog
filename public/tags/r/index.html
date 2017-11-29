@@ -49,6 +49,19 @@
   
 
   
+    <script>
+      window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+      ga('create', 'UA-99359926-2', 'auto');
+      ga('require', 'eventTracker');
+      ga('require', 'outboundLinkTracker');
+      ga('require', 'urlChangeTracker');
+      ga('send', 'pageview');
+    </script>
+    <script async src="//www.google-analytics.com/analytics.js"></script>
+    
+    <script async src="https://cdnjs.cloudflare.com/ajax/libs/autotrack/2.4.1/autotrack.js" integrity="sha512-HUmooslVKj4m6OBu0OgzjXXr+QuFYy/k7eLI5jdeEy/F4RSgMn6XRWRGkFi5IFaFgy7uFTkegp3Z0XnJf3Jq+g==" crossorigin="anonymous"></script>
+    
+  
 
   
   <link rel="alternate" href="/index.xml" type="application/rss+xml" title="Crime By The Numbers">
@@ -69,7 +82,7 @@
   <meta property="og:description" content="PhD Student">
   <meta property="og:locale" content="en-us">
   
-  <meta property="og:updated_time" content="2017-11-18T00:00:00&#43;00:00">
+  <meta property="og:updated_time" content="2017-11-24T00:00:00&#43;00:00">
   
 
   
@@ -159,10 +172,10 @@
   
   
   <div>
-    <h2><a href="/2017/11/18/downloading-data-from-the-fbi-ucr-2016/">Downloading data from the FBI&#39;s UCR 2016</a></h2>
+    <h2><a href="/reading-fixed-width-ascii-files-into-r/">Reading Fixed-Width ASCII Files into R</a></h2>
     <div class="article-style">
       
-      The FBI has recently (September 2017) released the raw files for UCR data for 2016. As usual, these files are in fixed-width ASCII files and do not come with a usable setup file. To make this data accessible, I made those setup files using the codebook provided by the FBI along with the raw data. Using the R package asciiSetupReader, I read the data into R and saved it in a number of data formats.
+      The majority of old (pre-2010) government data on crime comes in fixed-width ASCII files that have SPSS (file extension .sps) or SAS (file extension .sas) setup files. Important crime data (e.g. UCR and NIBRS) is still being released in this format. I created the R package asciiSetupReader to use R users be able to read this type of data. Here I will explain how these files work in theory, then walk through an example of using the package.
       
     </div>
   </div>

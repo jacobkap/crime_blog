@@ -1,0 +1,206 @@
+---
+title: Reading Fixed-Width ASCII Files into R
+author: Jacob Kaplan
+date: '2017-11-24'
+slug: reading-fixed-width-ascii-files-into-r
+categories: 
+  - R
+tags: 
+  - R
+---
+
+
+
+<p>The majority of old (pre-2010) government data on crime comes in fixed-width ASCII files that have SPSS (file extension .sps) or SAS (file extension .sas) setup files. Important crime data (e.g. UCR and NIBRS) is still being released in this format. I created the R package asciiSetupReader to use R users be able to read this type of data. Here I will explain how these files work in theory, then walk through an example of using the package.</p>
+<p>Fixed-width ASCII files are text files that are designed to be as small as possible. They do this by not having any indicator of columns. Whereas modern files will have spaces or commas to indicate that a column begins, fixed-width ASCII files have nothing. What they do have are setup files. Setup files indicate which characters in a row belong to which columns. The setup files also provide information and key-value pairs and column names, but lets start with the columns.</p>
+<p>The data in the ASCII files are essentially a long string for each row. Below is a string I just made up but is something like what you’d see if you ever opened the text file.</p>
+<blockquote>
+<p>CA9MW35</p>
+</blockquote>
+<p>This data is read by knowing which characters are in which column. If we know the first two characters are columns, character 3, 4 and 5 are each columns, and the two two characters are a single column, we can read in the data. The setup file provides this. It’ll be in the format of the column name (Usually it will have a placeholder name like V1 here and provide the real name later) and then the character(s) that make up the column.</p>
+<p>V1 1-2<br />
+V2 3<br />
+V3 4<br />
+V4 5<br />
+V5 6-7</p>
+<p>A dataset using the above string and column instructions will look like this.</p>
+<table style="width:35%;">
+<colgroup>
+<col width="6%" />
+<col width="6%" />
+<col width="6%" />
+<col width="6%" />
+<col width="6%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="center">V1</th>
+<th align="center">V2</th>
+<th align="center">V3</th>
+<th align="center">V4</th>
+<th align="center">V5</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center">CA</td>
+<td align="center">9</td>
+<td align="center">M</td>
+<td align="center">W</td>
+<td align="center">35</td>
+</tr>
+</tbody>
+</table>
+<p>The setup file also includes the names of the columns rather than the placeholders used to say how to break up the columns. In similar syntax to the above section, it has the placeholder column name followed by the real column name in quotes. This syntax continues when dealing with key-value pairs.</p>
+<p>V1 “State”<br />
+V2 “Crime”<br />
+V3 “Sex”<br />
+V4 “Race”<br />
+V5 “Victim_age</p>
+<table style="width:57%;">
+<colgroup>
+<col width="11%" />
+<col width="11%" />
+<col width="8%" />
+<col width="9%" />
+<col width="16%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="center">State</th>
+<th align="center">Crime</th>
+<th align="center">Sex</th>
+<th align="center">Race</th>
+<th align="center">Victim_age</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center">CA</td>
+<td align="center">9</td>
+<td align="center">M</td>
+<td align="center">W</td>
+<td align="center">35</td>
+</tr>
+</tbody>
+</table>
+<p>At this point we can see the true brilliance of fixed-width ASCII files. In their attempt to make the files as small as possible, they contain keys rather than the true labels for values. What does that mean? Look at the Race column. Instead of writing out White every time the value is White, it just has the letter W. This is done to save space. W takes up 1/5 as many characters as White, thus saving considerable space (and file size) every time it is used in place of the true label White. While, this isn’t a big issue now that we have very good compression software, but in its time it was useful. The setup files include all of the key-value pairs so it can automatically replace keys (W) with their values (White). This saves us a lot of time and mistakes if we had to rely on the codebook for every key in every column.</p>
+<p>The key-values section of a setup file looks like this. First is the key, then the value in quotes.</p>
+<p>V1<br />
+CA ‘California’<br />
+V2<br />
+9 ‘Murder’<br />
+V3<br />
+M ‘Male’<br />
+V4<br />
+W ‘White’</p>
+<p>And the final data set looks like this:</p>
+<table style="width:68%;">
+<colgroup>
+<col width="18%" />
+<col width="12%" />
+<col width="9%" />
+<col width="11%" />
+<col width="16%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="center">State</th>
+<th align="center">Crime</th>
+<th align="center">Sex</th>
+<th align="center">Race</th>
+<th align="center">Victim_age</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center">California</td>
+<td align="center">Murder</td>
+<td align="center">Male</td>
+<td align="center">White</td>
+<td align="center">35</td>
+</tr>
+</tbody>
+</table>
+<p>The keys have been replaced by their values, which is must easier to understand. The crime 9 has been replaced by Murder, saving us having to check the codebook. Notice that the value in Victim_age hasn’t changed and that that column isn’t even in the key-values section above. That is become not every column has keys to change to values. Almost no numeric column does since those numbers are just numbers, they won’t change (some data sets will have some ages be values, such as age 0 being called “under 1 year old”).</p>
+<div id="using-the-asciisetupreader-package" class="section level2">
+<h2>Using the asciiSetupReader package</h2>
+<p>To use the package, you may install it from CRAN using install.packages(“asciiSetupReader”) or get the development version from GitHub devtools::install_github(“jacobkap/asciiReader”). To read in the data we need both the ASCII file and its setup file. We will use the Law Enforcement Agency Identifiers Crosswalk, 2012 as the example which you can download from its <a href="http://www.icpsr.umich.edu/icpsrweb/NACJD/studies/35158?q=leaic">ICPSR page</a> (Click on SPSS Setup and it will download all the necessary files) or from my GitHub <a href="">here</a>. The files from ICPSR have a name related to the study ID so I renamed it “leaic2012” for simplicity. The parameters and steps to use the function is identical for sas_ascii_reader.</p>
+<p>Now, all we need to do to load the data is to input the text and setup file names to the function spss_ascii_reader of the package.</p>
+<pre class="r"><code>library(asciiSetupReader)</code></pre>
+<pre><code>## Loading required package: data.table</code></pre>
+<pre class="r"><code># Data is in the data folder
+leaic &lt;- spss_ascii_reader(dataset_name = &quot;data/leaic2012.txt&quot;, sps_name = &quot;data/leaic2012.sps&quot;)
+dim(leaic)</code></pre>
+<pre><code>## [1] 36490    40</code></pre>
+<pre class="r"><code>head(leaic)[1:5] # Show head of first 5 columns</code></pre>
+<pre><code>##   FIPS_STATE_CODE FIPS_COUNTY_CODE FIPS_PLACE_CODE
+## 1         Alabama              001           03220
+## 2         Alabama              001           62328
+## 3         Alabama              001           62328
+## 4         Alabama              001           99001
+## 5         Alabama              003           04660
+## 6         Alabama              003           04660
+##   FIPS_STATE_CODE_ALPHANUMERIC FIPS_COUNTY_CODE_ALPHANUMERIC
+## 1                            1                             1
+## 2                            1                             1
+## 3                            1                             1
+## 4                            1                             1
+## 5                            1                             3
+## 6                            1                             3</code></pre>
+<p>That’s all it takes to read in the data. The function also has three optional parameters. value_label_fix is a Boolean parameter (default is TRUE) for if you want to do the key-value swap. This is what changes W to White for example. Changing this to false means you get exactly what is in the text file without any replacement.</p>
+<pre class="r"><code># Data is in the data folder
+leaic &lt;- spss_ascii_reader(dataset_name = &quot;data/leaic2012.txt&quot;, sps_name = &quot;data/leaic2012.sps&quot;, value_label_fix = FALSE)
+dim(leaic)</code></pre>
+<pre><code>## [1] 36490    40</code></pre>
+<pre class="r"><code>head(leaic)[1:5] # Show head of first 5 columns</code></pre>
+<pre><code>##   FIPS_STATE_CODE FIPS_COUNTY_CODE FIPS_PLACE_CODE
+## 1               1                1            3220
+## 2               1                1           62328
+## 3               1                1           62328
+## 4               1                1           99001
+## 5               1                3            4660
+## 6               1                3            4660
+##   FIPS_STATE_CODE_ALPHANUMERIC FIPS_COUNTY_CODE_ALPHANUMERIC
+## 1                            1                             1
+## 2                            1                             1
+## 3                            1                             1
+## 4                            1                             1
+## 5                            1                             3
+## 6                            1                             3</code></pre>
+<p>real_names is also a Boolean parameter (default is TRUE) on if you want to real name of the column or the placeholder column names.</p>
+<pre class="r"><code># Data is in the data folder
+leaic &lt;- spss_ascii_reader(dataset_name = &quot;data/leaic2012.txt&quot;, sps_name = &quot;data/leaic2012.sps&quot;, real_names = FALSE)
+dim(leaic)</code></pre>
+<pre><code>## [1] 36490    40</code></pre>
+<pre class="r"><code>head(leaic)[1:5] # Show head of first 5 columns</code></pre>
+<pre><code>##    FSTATE FCOUNTY FPLACE FIPS_ST FIPS_COUNTY
+## 1 Alabama     001  03220       1           1
+## 2 Alabama     001  62328       1           1
+## 3 Alabama     001  62328       1           1
+## 4 Alabama     001  99001       1           1
+## 5 Alabama     003  04660       1           3
+## 6 Alabama     003  04660       1           3</code></pre>
+<p>keep_columns is the final optional parameter and is very important when dealing with large data. This parameter lets you select which columns to include. If can accept column numbers, the placeholder names, or the real column names but you cannot mix and match. The value in this parameter is that you only get the columns you need, keeping the file size as small as possible. As an example, I often deal with NIBRS data with is ~5 million rows long and has hundreds of columns. Using this parameter I get only a small number of columns rather than all of it. Without it, my computer wouldn’t be able to read in the data. Since you need to know what columns to include before you load the data, you should consult the data’s codebook.</p>
+<pre class="r"><code># Data is in the data folder
+leaic &lt;- spss_ascii_reader(dataset_name = &quot;data/leaic2012.txt&quot;, sps_name = &quot;data/leaic2012.sps&quot;, keep_columns = c(1:5, 11:20))
+dim(leaic)</code></pre>
+<pre><code>## [1] 36490    15</code></pre>
+<pre class="r"><code>head(leaic)[1:5] # Show head of first 5 columns</code></pre>
+<pre><code>##   FIPS_STATE_CODE FIPS_COUNTY_CODE FIPS_PLACE_CODE
+## 1         Alabama              001           03220
+## 2         Alabama              001           62328
+## 3         Alabama              001           62328
+## 4         Alabama              001           99001
+## 5         Alabama              003           04660
+## 6         Alabama              003           04660
+##   FIPS_STATE_CODE_ALPHANUMERIC FIPS_COUNTY_CODE_ALPHANUMERIC
+## 1                            1                             1
+## 2                            1                             1
+## 3                            1                             1
+## 4                            1                             1
+## 5                            1                             3
+## 6                            1                             3</code></pre>
+<p>Notice that when looking at the output from dim(), the number of the rows never changes but now the data set only has the 15 columns we specify.</p>
+<p>If you find any bugs or have any suggestions, please post on the packages <a href="https://github.com/jacobkap/asciiReader">GitHub page</a>.</p>
+</div>

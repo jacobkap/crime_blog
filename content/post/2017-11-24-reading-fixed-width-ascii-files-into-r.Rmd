@@ -1,0 +1,115 @@
+---
+title: Reading Fixed-Width ASCII Files into R
+author: Jacob Kaplan
+date: '2017-11-24'
+slug: reading-fixed-width-ascii-files-into-r
+categories: 
+  - R
+tags: 
+  - R
+---
+
+The majority of old (pre-2010) government data on crime comes in fixed-width ASCII files that have SPSS (file extension .sps) or SAS (file extension .sas) setup files. Important crime data (e.g. UCR and NIBRS) is still being released in this format. I created the R package asciiSetupReader to use R users be able to read this type of data. Here I will explain how these files work in theory, then walk through an example of using the package.
+
+Fixed-width ASCII files are text files that are designed to be as small as possible. They do this by not having any indicator of columns. Whereas modern files will have spaces or commas to indicate that a column begins, fixed-width ASCII files have nothing. What they do have are setup files. Setup files indicate which characters in a row belong to which columns. The setup files also provide information and key-value pairs and column names, but lets start with the columns.
+
+The data in the ASCII files are essentially a long string for each row. Below is a string I just made up but is something like what you'd see if you ever opened the text file. 
+
+> CA9MW35
+
+This data is read by knowing which characters are in which column. If we know the first two characters are columns, character 3, 4 and 5 are each columns, and the two two characters are a single column, we can read in the data. The setup file provides this. It'll be in the format of the column name (Usually it will have a placeholder name like V1 here and provide the real name later) and then the character(s) that make up the column.
+
+V1 1-2  
+V2 3  
+V3 4  
+V4 5  
+V5 6-7  
+
+A dataset using the above string and column instructions will look like this.
+
+```{r echo = FALSE}
+library(pander)
+example <- data.frame(V1 = "CA", V2 = "9", V3 = "M", V4 = "W", V5 = "35")
+pander(example)
+```
+
+The setup file also includes the names of the columns rather than the placeholders used to say how to break up the columns. In similar syntax to the above section, it has the placeholder column name followed by the real column name in quotes. This syntax continues when dealing with key-value pairs.
+
+V1 "State"  
+V2 "Crime"  
+V3 "Sex"  
+V4 "Race"  
+V5 "Victim_age   
+
+```{r echo = FALSE}
+example <- data.frame(State = "CA", Crime = "9", Sex = "M", Race = "W", Victim_age = "35")
+pander(example)
+```
+
+At this point we can see the true brilliance of fixed-width ASCII files. In their attempt to make the files as small as possible, they contain keys rather than the true labels for values. What does that mean? Look at the Race column. Instead of writing out White every time the value is White, it just has the letter W. This is done to save space. W takes up 1/5 as many characters as White, thus saving considerable space (and file size) every time it is used in place of the true label White. While, this isn't a big issue now that we have very good compression software, but in its time it was useful. The setup files include all of the key-value pairs so it can automatically replace keys (W) with their values (White). This saves us a lot of time and mistakes if we had to rely on the codebook for every key in every column.
+
+The key-values section of a setup file looks like this. First is the key, then the value in quotes.
+
+V1  
+CA 'California'  
+V2   
+9 'Murder'  
+V3  
+M 'Male'  
+V4  
+W 'White'  
+
+And the final data set looks like this:
+
+```{r echo = FALSE}
+example <- data.frame(State = "California", Crime = "Murder", Sex = "Male", Race = "White", Victim_age = "35")
+pander(example)
+```
+
+The keys have been replaced by their values, which is must easier to understand. The crime 9 has been replaced by Murder, saving us having to check the codebook. Notice that the value in Victim_age hasn't changed and that that column isn't even in the key-values section above. That is become not every column has keys to change to values. Almost no numeric column does since those numbers are just numbers, they won't change (some data sets will have some ages be values, such as age 0 being called "under 1 year old"). 
+
+
+## Using the asciiSetupReader package
+
+To use the package, you may install it from CRAN using install.packages("asciiSetupReader") or get the development version from GitHub devtools::install_github("jacobkap/asciiReader"). To read in the data we need both the ASCII file and its setup file. We will use the Law Enforcement Agency Identifiers Crosswalk, 2012 as the example which you can download from its [ICPSR page](http://www.icpsr.umich.edu/icpsrweb/NACJD/studies/35158?q=leaic) (Click on SPSS Setup and it will download all the necessary files) or from my GitHub [here](). The files from ICPSR have a name related to the study ID so I renamed it "leaic2012" for simplicity. The parameters and steps to use the function is identical for sas_ascii_reader.
+
+Now, all we need to do to load the data is to input the text and setup file names to the function spss_ascii_reader of the package.
+
+```{r}
+library(asciiSetupReader)
+# Data is in the data folder
+leaic <- spss_ascii_reader(dataset_name = "data/leaic2012.txt", sps_name = "data/leaic2012.sps")
+dim(leaic)
+head(leaic)[1:5] # Show head of first 5 columns
+```
+
+That's all it takes to read in the data. The function also has three optional parameters. value_label_fix is a Boolean parameter (default is TRUE) for if you want to do the key-value swap. This is what changes W to White for example. Changing this to false means you get exactly what is in the text file without any replacement.
+
+```{r}
+# Data is in the data folder
+leaic <- spss_ascii_reader(dataset_name = "data/leaic2012.txt", sps_name = "data/leaic2012.sps", value_label_fix = FALSE)
+dim(leaic)
+head(leaic)[1:5] # Show head of first 5 columns
+```
+
+real_names is also a Boolean parameter (default is TRUE) on if you want to real name of the column or the placeholder column names.
+
+```{r}
+# Data is in the data folder
+leaic <- spss_ascii_reader(dataset_name = "data/leaic2012.txt", sps_name = "data/leaic2012.sps", real_names = FALSE)
+dim(leaic)
+head(leaic)[1:5] # Show head of first 5 columns
+```
+
+keep_columns is the final optional parameter and is very important when dealing with large data. This parameter lets you select which columns to include. If can accept column numbers, the placeholder names, or the real column names but you cannot mix and match. The value in this parameter is that you only get the columns you need, keeping the file size as small as possible. As an example, I often deal with NIBRS data with is ~5 million rows long and has hundreds of columns. Using this parameter I get only a small number of columns rather than all of it. Without it, my computer wouldn't be able to read in the data. Since you need to know what columns to include before you load the data, you should consult the data's codebook. 
+
+```{r}
+# Data is in the data folder
+leaic <- spss_ascii_reader(dataset_name = "data/leaic2012.txt", sps_name = "data/leaic2012.sps", keep_columns = c(1:5, 11:20))
+dim(leaic)
+head(leaic)[1:5] # Show head of first 5 columns
+```
+
+Notice that when looking at the output from dim(), the number of the rows never changes but now the data set only has the 15 columns we specify.
+
+If you find any bugs or have any suggestions, please post on the packages [GitHub page](https://github.com/jacobkap/asciiReader). 

@@ -11,11 +11,213 @@
     <atom:link href="/post/" rel="self" type="application/rss+xml" />
     
     <item>
+      <title>Reading Fixed-Width ASCII Files into R</title>
+      <link>/reading-fixed-width-ascii-files-into-r/</link>
+      <pubDate>Fri, 24 Nov 2017 00:00:00 +0000</pubDate>
+      
+      <guid>/reading-fixed-width-ascii-files-into-r/</guid>
+      <description>&lt;p&gt;The majority of old (pre-2010) government data on crime comes in fixed-width ASCII files that have SPSS (file extension .sps) or SAS (file extension .sas) setup files. Important crime data (e.g. UCR and NIBRS) is still being released in this format. I created the R package asciiSetupReader to use R users be able to read this type of data. Here I will explain how these files work in theory, then walk through an example of using the package.&lt;/p&gt;
+&lt;p&gt;Fixed-width ASCII files are text files that are designed to be as small as possible. They do this by not having any indicator of columns. Whereas modern files will have spaces or commas to indicate that a column begins, fixed-width ASCII files have nothing. What they do have are setup files. Setup files indicate which characters in a row belong to which columns. The setup files also provide information and key-value pairs and column names, but lets start with the columns.&lt;/p&gt;
+&lt;p&gt;The data in the ASCII files are essentially a long string for each row. Below is a string I just made up but is something like what you’d see if you ever opened the text file.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;CA9MW35&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;This data is read by knowing which characters are in which column. If we know the first two characters are columns, character 3, 4 and 5 are each columns, and the two two characters are a single column, we can read in the data. The setup file provides this. It’ll be in the format of the column name (Usually it will have a placeholder name like V1 here and provide the real name later) and then the character(s) that make up the column.&lt;/p&gt;
+&lt;p&gt;V1 1-2&lt;br /&gt;
+V2 3&lt;br /&gt;
+V3 4&lt;br /&gt;
+V4 5&lt;br /&gt;
+V5 6-7&lt;/p&gt;
+&lt;p&gt;A dataset using the above string and column instructions will look like this.&lt;/p&gt;
+&lt;table style=&#34;width:35%;&#34;&gt;
+&lt;colgroup&gt;
+&lt;col width=&#34;6%&#34; /&gt;
+&lt;col width=&#34;6%&#34; /&gt;
+&lt;col width=&#34;6%&#34; /&gt;
+&lt;col width=&#34;6%&#34; /&gt;
+&lt;col width=&#34;6%&#34; /&gt;
+&lt;/colgroup&gt;
+&lt;thead&gt;
+&lt;tr class=&#34;header&#34;&gt;
+&lt;th align=&#34;center&#34;&gt;V1&lt;/th&gt;
+&lt;th align=&#34;center&#34;&gt;V2&lt;/th&gt;
+&lt;th align=&#34;center&#34;&gt;V3&lt;/th&gt;
+&lt;th align=&#34;center&#34;&gt;V4&lt;/th&gt;
+&lt;th align=&#34;center&#34;&gt;V5&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr class=&#34;odd&#34;&gt;
+&lt;td align=&#34;center&#34;&gt;CA&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;9&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;M&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;W&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;35&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;The setup file also includes the names of the columns rather than the placeholders used to say how to break up the columns. In similar syntax to the above section, it has the placeholder column name followed by the real column name in quotes. This syntax continues when dealing with key-value pairs.&lt;/p&gt;
+&lt;p&gt;V1 “State”&lt;br /&gt;
+V2 “Crime”&lt;br /&gt;
+V3 “Sex”&lt;br /&gt;
+V4 “Race”&lt;br /&gt;
+V5 “Victim_age&lt;/p&gt;
+&lt;table style=&#34;width:57%;&#34;&gt;
+&lt;colgroup&gt;
+&lt;col width=&#34;11%&#34; /&gt;
+&lt;col width=&#34;11%&#34; /&gt;
+&lt;col width=&#34;8%&#34; /&gt;
+&lt;col width=&#34;9%&#34; /&gt;
+&lt;col width=&#34;16%&#34; /&gt;
+&lt;/colgroup&gt;
+&lt;thead&gt;
+&lt;tr class=&#34;header&#34;&gt;
+&lt;th align=&#34;center&#34;&gt;State&lt;/th&gt;
+&lt;th align=&#34;center&#34;&gt;Crime&lt;/th&gt;
+&lt;th align=&#34;center&#34;&gt;Sex&lt;/th&gt;
+&lt;th align=&#34;center&#34;&gt;Race&lt;/th&gt;
+&lt;th align=&#34;center&#34;&gt;Victim_age&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr class=&#34;odd&#34;&gt;
+&lt;td align=&#34;center&#34;&gt;CA&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;9&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;M&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;W&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;35&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;At this point we can see the true brilliance of fixed-width ASCII files. In their attempt to make the files as small as possible, they contain keys rather than the true labels for values. What does that mean? Look at the Race column. Instead of writing out White every time the value is White, it just has the letter W. This is done to save space. W takes up 1/5 as many characters as White, thus saving considerable space (and file size) every time it is used in place of the true label White. While, this isn’t a big issue now that we have very good compression software, but in its time it was useful. The setup files include all of the key-value pairs so it can automatically replace keys (W) with their values (White). This saves us a lot of time and mistakes if we had to rely on the codebook for every key in every column.&lt;/p&gt;
+&lt;p&gt;The key-values section of a setup file looks like this. First is the key, then the value in quotes.&lt;/p&gt;
+&lt;p&gt;V1&lt;br /&gt;
+CA ‘California’&lt;br /&gt;
+V2&lt;br /&gt;
+9 ‘Murder’&lt;br /&gt;
+V3&lt;br /&gt;
+M ‘Male’&lt;br /&gt;
+V4&lt;br /&gt;
+W ‘White’&lt;/p&gt;
+&lt;p&gt;And the final data set looks like this:&lt;/p&gt;
+&lt;table style=&#34;width:68%;&#34;&gt;
+&lt;colgroup&gt;
+&lt;col width=&#34;18%&#34; /&gt;
+&lt;col width=&#34;12%&#34; /&gt;
+&lt;col width=&#34;9%&#34; /&gt;
+&lt;col width=&#34;11%&#34; /&gt;
+&lt;col width=&#34;16%&#34; /&gt;
+&lt;/colgroup&gt;
+&lt;thead&gt;
+&lt;tr class=&#34;header&#34;&gt;
+&lt;th align=&#34;center&#34;&gt;State&lt;/th&gt;
+&lt;th align=&#34;center&#34;&gt;Crime&lt;/th&gt;
+&lt;th align=&#34;center&#34;&gt;Sex&lt;/th&gt;
+&lt;th align=&#34;center&#34;&gt;Race&lt;/th&gt;
+&lt;th align=&#34;center&#34;&gt;Victim_age&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr class=&#34;odd&#34;&gt;
+&lt;td align=&#34;center&#34;&gt;California&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;Murder&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;Male&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;White&lt;/td&gt;
+&lt;td align=&#34;center&#34;&gt;35&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;The keys have been replaced by their values, which is must easier to understand. The crime 9 has been replaced by Murder, saving us having to check the codebook. Notice that the value in Victim_age hasn’t changed and that that column isn’t even in the key-values section above. That is become not every column has keys to change to values. Almost no numeric column does since those numbers are just numbers, they won’t change (some data sets will have some ages be values, such as age 0 being called “under 1 year old”).&lt;/p&gt;
+&lt;div id=&#34;using-the-asciisetupreader-package&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Using the asciiSetupReader package&lt;/h2&gt;
+&lt;p&gt;To use the package, you may install it from CRAN using install.packages(“asciiSetupReader”) or get the development version from GitHub devtools::install_github(“jacobkap/asciiReader”). To read in the data we need both the ASCII file and its setup file. We will use the Law Enforcement Agency Identifiers Crosswalk, 2012 as the example which you can download from its &lt;a href=&#34;http://www.icpsr.umich.edu/icpsrweb/NACJD/studies/35158?q=leaic&#34;&gt;ICPSR page&lt;/a&gt; (Click on SPSS Setup and it will download all the necessary files) or from my GitHub &lt;a href=&#34;&#34;&gt;here&lt;/a&gt;. The files from ICPSR have a name related to the study ID so I renamed it “leaic2012” for simplicity. The parameters and steps to use the function is identical for sas_ascii_reader.&lt;/p&gt;
+&lt;p&gt;Now, all we need to do to load the data is to input the text and setup file names to the function spss_ascii_reader of the package.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;library(asciiSetupReader)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## Loading required package: data.table&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;# Data is in the data folder
+leaic &amp;lt;- spss_ascii_reader(dataset_name = &amp;quot;data/leaic2012.txt&amp;quot;, sps_name = &amp;quot;data/leaic2012.sps&amp;quot;)
+dim(leaic)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## [1] 36490    40&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;head(leaic)[1:5] # Show head of first 5 columns&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;##   FIPS_STATE_CODE FIPS_COUNTY_CODE FIPS_PLACE_CODE
+## 1         Alabama              001           03220
+## 2         Alabama              001           62328
+## 3         Alabama              001           62328
+## 4         Alabama              001           99001
+## 5         Alabama              003           04660
+## 6         Alabama              003           04660
+##   FIPS_STATE_CODE_ALPHANUMERIC FIPS_COUNTY_CODE_ALPHANUMERIC
+## 1                            1                             1
+## 2                            1                             1
+## 3                            1                             1
+## 4                            1                             1
+## 5                            1                             3
+## 6                            1                             3&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;That’s all it takes to read in the data. The function also has three optional parameters. value_label_fix is a Boolean parameter (default is TRUE) for if you want to do the key-value swap. This is what changes W to White for example. Changing this to false means you get exactly what is in the text file without any replacement.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;# Data is in the data folder
+leaic &amp;lt;- spss_ascii_reader(dataset_name = &amp;quot;data/leaic2012.txt&amp;quot;, sps_name = &amp;quot;data/leaic2012.sps&amp;quot;, value_label_fix = FALSE)
+dim(leaic)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## [1] 36490    40&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;head(leaic)[1:5] # Show head of first 5 columns&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;##   FIPS_STATE_CODE FIPS_COUNTY_CODE FIPS_PLACE_CODE
+## 1               1                1            3220
+## 2               1                1           62328
+## 3               1                1           62328
+## 4               1                1           99001
+## 5               1                3            4660
+## 6               1                3            4660
+##   FIPS_STATE_CODE_ALPHANUMERIC FIPS_COUNTY_CODE_ALPHANUMERIC
+## 1                            1                             1
+## 2                            1                             1
+## 3                            1                             1
+## 4                            1                             1
+## 5                            1                             3
+## 6                            1                             3&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;real_names is also a Boolean parameter (default is TRUE) on if you want to real name of the column or the placeholder column names.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;# Data is in the data folder
+leaic &amp;lt;- spss_ascii_reader(dataset_name = &amp;quot;data/leaic2012.txt&amp;quot;, sps_name = &amp;quot;data/leaic2012.sps&amp;quot;, real_names = FALSE)
+dim(leaic)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## [1] 36490    40&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;head(leaic)[1:5] # Show head of first 5 columns&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;##    FSTATE FCOUNTY FPLACE FIPS_ST FIPS_COUNTY
+## 1 Alabama     001  03220       1           1
+## 2 Alabama     001  62328       1           1
+## 3 Alabama     001  62328       1           1
+## 4 Alabama     001  99001       1           1
+## 5 Alabama     003  04660       1           3
+## 6 Alabama     003  04660       1           3&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;keep_columns is the final optional parameter and is very important when dealing with large data. This parameter lets you select which columns to include. If can accept column numbers, the placeholder names, or the real column names but you cannot mix and match. The value in this parameter is that you only get the columns you need, keeping the file size as small as possible. As an example, I often deal with NIBRS data with is ~5 million rows long and has hundreds of columns. Using this parameter I get only a small number of columns rather than all of it. Without it, my computer wouldn’t be able to read in the data. Since you need to know what columns to include before you load the data, you should consult the data’s codebook.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;# Data is in the data folder
+leaic &amp;lt;- spss_ascii_reader(dataset_name = &amp;quot;data/leaic2012.txt&amp;quot;, sps_name = &amp;quot;data/leaic2012.sps&amp;quot;, keep_columns = c(1:5, 11:20))
+dim(leaic)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## [1] 36490    15&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;head(leaic)[1:5] # Show head of first 5 columns&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;##   FIPS_STATE_CODE FIPS_COUNTY_CODE FIPS_PLACE_CODE
+## 1         Alabama              001           03220
+## 2         Alabama              001           62328
+## 3         Alabama              001           62328
+## 4         Alabama              001           99001
+## 5         Alabama              003           04660
+## 6         Alabama              003           04660
+##   FIPS_STATE_CODE_ALPHANUMERIC FIPS_COUNTY_CODE_ALPHANUMERIC
+## 1                            1                             1
+## 2                            1                             1
+## 3                            1                             1
+## 4                            1                             1
+## 5                            1                             3
+## 6                            1                             3&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Notice that when looking at the output from dim(), the number of the rows never changes but now the data set only has the 15 columns we specify.&lt;/p&gt;
+&lt;p&gt;If you find any bugs or have any suggestions, please post on the packages &lt;a href=&#34;https://github.com/jacobkap/asciiReader&#34;&gt;GitHub page&lt;/a&gt;.&lt;/p&gt;
+&lt;/div&gt;
+</description>
+    </item>
+    
+    <item>
       <title>Do Mexican Immigrants Cause Crime?</title>
-      <link>/2017/11/21/do-mexican-immigrants-cause-crime/</link>
+      <link>/do-mexican-immigrants-cause-crime/</link>
       <pubDate>Tue, 21 Nov 2017 00:00:00 +0000</pubDate>
       
-      <guid>/2017/11/21/do-mexican-immigrants-cause-crime/</guid>
+      <guid>/do-mexican-immigrants-cause-crime/</guid>
       <description>&lt;p&gt;There has been a lot of talk lately about immigration. In particular, about if immigrants cause crime in the cities they go to. Like a lot of controversial topics, this one is based mainly in anecdotes and exaggerations. Here is some data regarding the issue.&lt;/p&gt;
 &lt;p&gt;In this post I look at the relationship between crime rates and Mexican immigrant population in counties between 1980 and 2010. For a full methodology and the R code used to analyze the data, see below. Please note that this is just a simple analysis and doesn’t indicate a causal relationship.&lt;/p&gt;
 &lt;p&gt;I used data from two sources for this analysis. Crime data came from the FBI’s Uniform Crime Report (UCR) and Mexican immigration data came from the Census. There were 102 counties that were available in both data sets for both years 1980 and 2010. Figure one shows a scatterplots of the relationship. The blue line shows a line of best fit. The blue line is slightly downward sloping indicating that there is a negative relationship. As Mexican immigrant proportion increases, crime decreases. However this relationship seems fairly mild. The points are also not very close to the blue line, showing that even if the relationship exists, it’s not a very strong one.&lt;/p&gt;
@@ -46,10 +248,10 @@ Figure 3: Relationship between crime (Part I offenses) and Mexican immigrant pop
     
     <item>
       <title>Downloading data from the FBI&#39;s UCR 2016</title>
-      <link>/2017/11/18/downloading-data-from-the-fbi-ucr-2016/</link>
+      <link>/downloading-data-from-the-fbi-ucr-2016/</link>
       <pubDate>Sat, 18 Nov 2017 00:00:00 +0000</pubDate>
       
-      <guid>/2017/11/18/downloading-data-from-the-fbi-ucr-2016/</guid>
+      <guid>/downloading-data-from-the-fbi-ucr-2016/</guid>
       <description>&lt;p&gt;The FBI has recently (September 2017) released the raw files for UCR data for 2016. As usual, these files are in fixed-width ASCII files and do not come with a usable setup file. To make this data accessible, I made those setup files using the codebook provided by the FBI along with the raw data. Using the R package asciiSetupReader, I read the data into R and saved it in a number of data formats. These cleaned files are now available at openICPSR. Below are the links to the openICPSR page for each of the files as well as the formats available. After that is a brief methodology section for how I created the setup files and checked for accuracy.&lt;/p&gt;
 &lt;div id=&#34;files-available&#34; class=&#34;section level2&#34;&gt;
 &lt;h2&gt;Files Available&lt;/h2&gt;

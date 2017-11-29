@@ -5,7 +5,16 @@
     
     <url>
     
-      <loc>/2017/11/21/do-mexican-immigrants-cause-crime/</loc>
+      <loc>/reading-fixed-width-ascii-files-into-r/</loc>
+      <lastmod>2017-11-24T00:00:00+00:00</lastmod>
+    </url>
+    
+  
+    
+    
+    <url>
+    
+      <loc>/do-mexican-immigrants-cause-crime/</loc>
       <lastmod>2017-11-21T00:00:00+00:00</lastmod>
     </url>
     
@@ -14,7 +23,7 @@
     
     <url>
     
-      <loc>/2017/11/18/downloading-data-from-the-fbi-ucr-2016/</loc>
+      <loc>/downloading-data-from-the-fbi-ucr-2016/</loc>
       <lastmod>2017-11-18T00:00:00+00:00</lastmod>
     </url>
     
@@ -120,8 +129,18 @@
     
     <url>
     
+      <loc>/tags/r/</loc>
+      <lastmod>2017-11-24T00:00:00+00:00</lastmod>
+      <priority>0</priority>
+    </url>
+    
+  
+    
+    
+    <url>
+    
       <loc>/categories/r/</loc>
-      <lastmod>2017-11-21T00:00:00+00:00</lastmod>
+      <lastmod>2017-11-24T00:00:00+00:00</lastmod>
       <priority>0</priority>
     </url>
     
