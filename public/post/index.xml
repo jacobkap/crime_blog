@@ -132,9 +132,8 @@ W ‘White’&lt;/p&gt;
 &lt;h2&gt;Using the asciiSetupReader package&lt;/h2&gt;
 &lt;p&gt;To use the package, you may install it from CRAN using install.packages(“asciiSetupReader”) or get the development version from GitHub devtools::install_github(“jacobkap/asciiReader”). To read in the data we need both the ASCII file and its setup file. We will use the Law Enforcement Agency Identifiers Crosswalk, 2012 as the example which you can download from its &lt;a href=&#34;http://www.icpsr.umich.edu/icpsrweb/NACJD/studies/35158?q=leaic&#34;&gt;ICPSR page&lt;/a&gt; (Click on SPSS Setup and it will download all the necessary files) or from my GitHub &lt;a href=&#34;&#34;&gt;here&lt;/a&gt;. The files from ICPSR have a name related to the study ID so I renamed it “leaic2012” for simplicity. The parameters and steps to use the function is identical for sas_ascii_reader.&lt;/p&gt;
 &lt;p&gt;Now, all we need to do to load the data is to input the text and setup file names to the function spss_ascii_reader of the package.&lt;/p&gt;
-&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;library(asciiSetupReader)&lt;/code&gt;&lt;/pre&gt;
-&lt;pre&gt;&lt;code&gt;## Loading required package: data.table&lt;/code&gt;&lt;/pre&gt;
-&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;# Data is in the data folder
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;library(asciiSetupReader)
+# Data is in the data folder
 leaic &amp;lt;- spss_ascii_reader(dataset_name = &amp;quot;data/leaic2012.txt&amp;quot;, sps_name = &amp;quot;data/leaic2012.sps&amp;quot;)
 dim(leaic)&lt;/code&gt;&lt;/pre&gt;
 &lt;pre&gt;&lt;code&gt;## [1] 36490    40&lt;/code&gt;&lt;/pre&gt;

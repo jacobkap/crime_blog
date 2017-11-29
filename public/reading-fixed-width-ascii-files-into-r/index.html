@@ -368,9 +368,8 @@ W ‘White’</p>
 <h2>Using the asciiSetupReader package</h2>
 <p>To use the package, you may install it from CRAN using install.packages(“asciiSetupReader”) or get the development version from GitHub devtools::install_github(“jacobkap/asciiReader”). To read in the data we need both the ASCII file and its setup file. We will use the Law Enforcement Agency Identifiers Crosswalk, 2012 as the example which you can download from its <a href="http://www.icpsr.umich.edu/icpsrweb/NACJD/studies/35158?q=leaic">ICPSR page</a> (Click on SPSS Setup and it will download all the necessary files) or from my GitHub <a href="">here</a>. The files from ICPSR have a name related to the study ID so I renamed it “leaic2012” for simplicity. The parameters and steps to use the function is identical for sas_ascii_reader.</p>
 <p>Now, all we need to do to load the data is to input the text and setup file names to the function spss_ascii_reader of the package.</p>
-<pre class="r"><code>library(asciiSetupReader)</code></pre>
-<pre><code>## Loading required package: data.table</code></pre>
-<pre class="r"><code># Data is in the data folder
+<pre class="r"><code>library(asciiSetupReader)
+# Data is in the data folder
 leaic &lt;- spss_ascii_reader(dataset_name = &quot;data/leaic2012.txt&quot;, sps_name = &quot;data/leaic2012.sps&quot;)
 dim(leaic)</code></pre>
 <pre><code>## [1] 36490    40</code></pre>

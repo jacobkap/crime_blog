@@ -1,12 +1,10 @@
 ---
-title: Reading Fixed-Width ASCII Files into R
-author: Jacob Kaplan
+title: "Reading Fixed-Width ASCII Files into R"
+author: "Jacob Kaplan"
 date: '2017-11-24'
 slug: reading-fixed-width-ascii-files-into-r
-categories: 
-  - R
-tags: 
-  - R
+tags: R
+categories: R
 ---
 
 The majority of old (pre-2010) government data on crime comes in fixed-width ASCII files that have SPSS (file extension .sps) or SAS (file extension .sas) setup files. Important crime data (e.g. UCR and NIBRS) is still being released in this format. I created the R package asciiSetupReader to use R users be able to read this type of data. Here I will explain how these files work in theory, then walk through an example of using the package.
