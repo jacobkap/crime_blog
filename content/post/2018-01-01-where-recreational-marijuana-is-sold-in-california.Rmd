@@ -1,0 +1,171 @@
+---
+title: "Where Recreational Marijuana is Sold in California"
+author: "Jacob Kaplan"
+date: '2018-01-01'
+slug: where-recreational-marijuana-is-sold-in-california
+tags:
+  - R
+  - Marijuana
+categories: 
+  - R
+---
+
+The new year brings the start of recreational marijuana sales in California. According to an [article on capradio.com](http://www.capradio.org/articles/2018/01/01/its-now-legal-to-buy-pot-in-california-but-red-tape-could-slow-supply-chain/), only part of the state has accesses to recreational marijuana stores. That is due to a mix of municipalities banning stores within their jurisdiction as well as only a limited number of stores given licenses to sell. 
+
+I decided to look at where people in California could buy recreational marijuana. The state government's Bureau of Cannabis Control lists all businesses with licenses to be involved with marijuana. I looked at businesses with a license to sell recreationally marijuana (business that are "Nonstorefront" are excluded). 
+
+As of about 10am, there were [95 businesses with this license](https://aca5.accela.com/bcc/Cap/CapHome.aspx?module=Licenses&ShowMyPermitList=N), all of them had temporary licenses that last for 120 days (by 5pm, the website showed 100 licenses). I collected the data in the morninig so will only show maps based on those 95 licenses.    
+
+I geocoded the 95 addresses, getting info for 94 of the locations. From this, I made three graphs showing how the 94 stores are dispersed across the state. Figure 1 and Figure 2 show the same data, the number of stores per county. Figure 2 provides a bit more context by showing a Google Maps image along with the shades counties. The majority of stores are concentrated in population centers. The Bay Area, Silicon Valley, and San Diego area have the most stores. The far north part of the state, which is known as the area where marijuana is often grown, also has a scattering of stores. Strangely, Los Angeles has fewer stores than I'd expect given their population. 
+
+Figure 3 shows each individual store rather than counties. 
+
+```{r scraper, eval=FALSE, message=FALSE, warning=FALSE, include=FALSE, paged.print=TRUE}
+library(RSelenium)
+library(rvest)
+marijuana_addresses <- c()
+url <- "https://aca5.accela.com/bcc/Cap/CapHome.aspx?module=Licenses&ShowMyPermitList=N"
+rD <- rsDriver()
+remDr <- rD$client
+remDr$navigate(url)
+
+selenium_clicker <- function(remDr, using, value) {
+  webElem <- remDr$findElement(using = using,
+                               value)
+  webElem$clickElement()
+}
+
+#selenium_clicker(remDr,using = 'name', value = "ctl00$PlaceHolderMain$generalSearchForm$ddlGSPermitType")
+
+webElem <- remDr$findElement(using = 'name', value = "ctl00$PlaceHolderMain$generalSearchForm$ddlGSPermitType")
+licenses <- webElem$selectTag()
+licenses$elements[[10]]$clickElement()
+selenium_clicker(remDr = remDr, using = 'id', value = "ctl00_PlaceHolderMain_btnNewSearch")
+
+page_source <- read_html(remDr$getPageSource()[[1]])
+all_links <- page_source %>% html_nodes("a") %>% html_attr("href")
+all_links <- all_links[grepl("CapDetail", all_links)]
+for (i in 2:5) {
+  right_page <- remDr$findElement(using = "partial link text", "Next")
+  right_page$clickElement(); Sys.sleep(10)
+  page_source <- read_html(remDr$getPageSource()[[1]])
+  links <- page_source %>% html_nodes("a") %>% html_attr("href")
+  links <- links[grepl("CapDetail", links)]
+  all_links <- c(all_links, links)
+}
+
+all_links <- paste0("https://aca5.accela.com/", all_links)
+for (link in all_links) {
+  page <- read_html(link)
+  address <- page %>%
+    html_nodes(".NotBreakWord") %>%
+    html_text()
+  marijuana_addresses <- c(marijuana_addresses, address)
+}
+```
+
+```{r geocoder, eval=FALSE, message=FALSE, warning=FALSE, include=FALSE}
+library(ggmap)
+geocoded_marijuana <- geocode(marijuana_addresses)
+geocoded_marijuana <- data.frame(lon = geocoded_marijuana$lon,
+                                 lat = geocoded_marijuana$lat,
+                                 address = marijuana_addresses)
+geocoded_marijuana <- geocoded_marijuana[!is.na(geocoded_marijuana$lon),]
+```
+
+
+```{r coords_to_counties, echo=FALSE, message=FALSE, warning=FALSE}
+#https://stackoverflow.com/questions/8751497/latitude-longitude-coordinates-to-state-code-in-r/8751965#8751965
+library(sp)
+library(maps)
+library(maptools)
+library(dplyr)
+load("data/geocoded_marijuana.rda")
+latlong2state <- function(pointsDF) {
+    # Prepare SpatialPolygons object with one SpatialPolygon
+    # per state (plus DC, minus HI & AK)
+    states <- map('county', fill=TRUE, col="transparent", plot=FALSE)
+    IDs <- sapply(strsplit(states$names, ":"), function(x) x[1])
+    states_sp <- map2SpatialPolygons(states, IDs=IDs,
+                     proj4string=CRS("+proj=longlat +datum=WGS84"))
+
+    # Convert pointsDF to a SpatialPoints object 
+    pointsSP <- SpatialPoints(pointsDF, 
+                    proj4string=CRS("+proj=longlat +datum=WGS84"))
+
+    # Use 'over' to get _indices_ of the Polygons object containing each point 
+    indices <- over(pointsSP, states_sp)
+
+    # Return the state names of the Polygons object containing each point
+    stateNames <- sapply(states_sp@polygons, function(x) x@ID)
+    stateNames[indices]
+}
+
+counties <- latlong2state(geocoded_marijuana[, 1:2])
+geocoded_marijuana <- cbind(geocoded_marijuana, counties)
+rownames(geocoded_marijuana) <- 1:nrow(geocoded_marijuana)
+# Manually adding counties that were found
+geocoded_marijuana$counties[79] <- "california,san diego"
+geocoded_marijuana$counties[85] <- "california,alameda"
+geocoded_marijuana$counties[39] <- "california,mendocino"
+geocoded_marijuana$counties[90] <- "california,alameda"
+
+data(county.fips) # Gets fips code for choropleth map
+names(county.fips)[2] <- "counties"
+geocoded_marijuana = left_join(geocoded_marijuana, county.fips)
+# Add counties without any dispensaries
+
+```
+
+
+```{r , echo=FALSE, fig.cap="Recreational Marijuana Stores in California as of January 1, 2018.", message=FALSE, warning=FALSE}
+library(choroplethr)
+library(choroplethrMaps)
+library(RColorBrewer)
+library(ggplot2)
+col.pal <- brewer.pal(4, "Greens")
+col.pal <- c("#ffffff", col.pal) # add white color
+geocoded_marijuana <- geocoded_marijuana %>% group_by(fips) %>%
+    dplyr::summarize(n_stores = n()) %>%
+  mutate(fips = as.numeric(fips)) %>%
+  dplyr::rename(region = fips, 
+         value = n_stores)
+cali_counties <- county.fips[grep("california", county.fips$counties),]
+cali_counties <- cali_counties$fips[!cali_counties$fips %in% geocoded_marijuana$region]
+cali_counties <- data.frame(region = cali_counties, value = rep(0, length(cali_counties)))
+geocoded_marijuana <- bind_rows(geocoded_marijuana, cali_counties)
+geocoded_marijuana$value[geocoded_marijuana$value %in% 1:3] <- "1-3"
+geocoded_marijuana$value[geocoded_marijuana$value %in% 4:6] <- "4-6"
+geocoded_marijuana$value[geocoded_marijuana$value %in% 7:9] <- "7-9"
+geocoded_marijuana$value[geocoded_marijuana$value %in% 10:20] <- "10+"
+geocoded_marijuana$value <- factor(geocoded_marijuana$value, levels = c("0", "1-3", "4-6", "7-9", "10+"))
+
+cali_marijuana <- CountyChoropleth$new(geocoded_marijuana)
+cali_marijuana$set_zoom("california")
+cali_marijuana$ggplot_scale <- scale_fill_manual(values = col.pal)
+cali_marijuana$legend <- "# of Stores"
+cali_marijuana$render() + 
+  guides(fill=guide_legend(title = "# of Stores")) 
+
+```
+
+```{r echo=FALSE, message=FALSE, warning=FALSE, fig.cap="Recreational Marijuana Stores in California as of January 1, 2018."}
+cali_marijuana <- CountyChoropleth$new(geocoded_marijuana)
+cali_marijuana$set_zoom("california")
+cali_marijuana$ggplot_scale <- scale_fill_manual(values = col.pal)
+cali_marijuana$legend <- "# of Stores"
+cali_marijuana$render_with_reference_map() + 
+  guides(fill=guide_legend(title = "# of Stores")) 
+```
+
+
+```{r , echo=FALSE, message=FALSE, warning=FALSE, fig.cap = "Each dot indicates one recreational marijuana store open as of January 1, 2018."}
+california <- map_data('county', region = 'california')
+load("data/geocoded_marijuana.rda")
+ggplot(california, aes(x = long, y = lat, group = group)) + 
+  geom_polygon(fill = "white", color = "black") + 
+  geom_point(data = geocoded_marijuana, aes(group = NULL, x = lon, y = lat), color = "forestgreen") + 
+  theme_void() +
+  coord_map()
+```
+

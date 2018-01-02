@@ -1,0 +1,37 @@
+---
+title: "Where Recreational Marijuana is Sold in California"
+author: "Jacob Kaplan"
+date: '2018-01-01'
+slug: where-recreational-marijuana-is-sold-in-california
+tags:
+  - R
+  - Marijuana
+categories: 
+  - R
+---
+
+
+
+<p>The new year brings the start of recreational marijuana sales in California. According to an <a href="http://www.capradio.org/articles/2018/01/01/its-now-legal-to-buy-pot-in-california-but-red-tape-could-slow-supply-chain/">article on capradio.com</a>, only part of the state has accesses to recreational marijuana stores. That is due to a mix of municipalities banning stores within their jurisdiction as well as only a limited number of stores given licenses to sell.</p>
+<p>I decided to look at where people in California could buy recreational marijuana. The state government’s Bureau of Cannabis Control lists all businesses with licenses to be involved with marijuana. I looked at businesses with a license to sell recreationally marijuana (business that are “Nonstorefront” are excluded).</p>
+<p>As of about 10am, there were <a href="https://aca5.accela.com/bcc/Cap/CapHome.aspx?module=Licenses&amp;ShowMyPermitList=N">95 businesses with this license</a>, all of them had temporary licenses that last for 120 days (by 5pm, the website showed 100 licenses). I collected the data in the morninig so will only show maps based on those 95 licenses.</p>
+<p>I geocoded the 95 addresses, getting info for 94 of the locations. From this, I made three graphs showing how the 94 stores are dispersed across the state. Figure 1 and Figure 2 show the same data, the number of stores per county. Figure 2 provides a bit more context by showing a Google Maps image along with the shades counties. The majority of stores are concentrated in population centers. The Bay Area, Silicon Valley, and San Diego area have the most stores. The far north part of the state, which is known as the area where marijuana is often grown, also has a scattering of stores. Strangely, Los Angeles has fewer stores than I’d expect given their population.</p>
+<p>Figure 3 shows each individual store rather than counties.</p>
+<div class="figure"><span id="fig:unnamed-chunk-1"></span>
+<img src="/post/2018-01-01-where-recreational-marijuana-is-sold-in-california_files/figure-html/unnamed-chunk-1-1.png" alt="Recreational Marijuana Stores in California as of January 1, 2018." width="672" />
+<p class="caption">
+Figure 1: Recreational Marijuana Stores in California as of January 1, 2018.
+</p>
+</div>
+<div class="figure"><span id="fig:unnamed-chunk-2"></span>
+<img src="/post/2018-01-01-where-recreational-marijuana-is-sold-in-california_files/figure-html/unnamed-chunk-2-1.png" alt="Recreational Marijuana Stores in California as of January 1, 2018." width="672" />
+<p class="caption">
+Figure 2: Recreational Marijuana Stores in California as of January 1, 2018.
+</p>
+</div>
+<div class="figure"><span id="fig:unnamed-chunk-3"></span>
+<img src="/post/2018-01-01-where-recreational-marijuana-is-sold-in-california_files/figure-html/unnamed-chunk-3-1.png" alt="Each dot indicates one recreational marijuana store open as of January 1, 2018." width="672" />
+<p class="caption">
+Figure 3: Each dot indicates one recreational marijuana store open as of January 1, 2018.
+</p>
+</div>

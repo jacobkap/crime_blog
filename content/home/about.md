@@ -35,4 +35,4 @@ weight = 500
 
 # Biography
 
-Jacob Kaplan is a PhD student studying criminology at the University of Pennsylvania. His research interests include Crime Prevention Through Environmental Design, providing tools to make data access easier, and the impact of marijuana legalization.
+Jacob Kaplan is a PhD student studying criminology at the University of Pennsylvania. His research interests include Crime Prevention Through Environmental Design and providing tools to make data access easier.
