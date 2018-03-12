@@ -11,6 +11,189 @@
     <atom:link href="/" rel="self" type="application/rss+xml" />
     
     <item>
+      <title>Introduction to R Markdown for a Thesis</title>
+      <link>/introduction-to-r-markdown-for-a-thesis/</link>
+      <pubDate>Mon, 12 Mar 2018 00:00:00 +0000</pubDate>
+      
+      <guid>/introduction-to-r-markdown-for-a-thesis/</guid>
+      <description>&lt;p&gt;Writing a thesis is stressful. R Markdown can help reducing the number of things you have to think about. This guide, and following ones, can be used as an introduction to R Markdown, specifically for people working on a research thesis.&lt;/p&gt;
+&lt;div id=&#34;abstract&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Abstract&lt;/h2&gt;
+&lt;p&gt;&lt;em&gt;R’s version of Markdown is essentially a Word document that allows R code. You can writie in it just like in Word and include R code which will output right in the document. This is useful because if you change you code (such as changing a graph), it will automatically be changed in the document. You no longer have to remember to copy over the new results (regression results, tables, graphs, etc.) from R to Word. If you are changing your results (and you will more than you expect), using R Markdown will save you time&lt;/em&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;plain-text&#34; class=&#34;section level1&#34;&gt;
+&lt;h1&gt;Plain text&lt;/h1&gt;
+&lt;p&gt;Markdown works nearly identical to Word. The major difference is that it allows R code and you have to do more formatting yourself. If you do use Markdown, the main advice is to &lt;strong&gt;ignore formatting until the end&lt;/strong&gt;! Just ignore formatting until you absolutely need to. That said, let’s start with making a Markdown file in RStudio.&lt;/p&gt;
+&lt;div class=&#34;figure&#34;&gt;
+&lt;img src=&#34;/img/markdown_images/markdown1.png&#34; alt=&#34;Opening a new R Markdown file&#34; /&gt;
+&lt;p class=&#34;caption&#34;&gt;Opening a new R Markdown file&lt;/p&gt;
+&lt;/div&gt;
+&lt;p&gt;As seen in Figure 1, you make a new R Markdown file using the same menu as making an R Script file, but now select &lt;code&gt;R Markdown...&lt;/code&gt;. From here it’ll open up a window where you select the title, author, and type of output. You can always change all three of these selecting right in the Markdown file. Selecting PDF may require you to download additional software to get it to output - some OS may already have the software installed.&lt;/p&gt;
+&lt;div class=&#34;figure&#34;&gt;
+&lt;img src=&#34;/img/markdown_images/markdown2.png&#34; alt=&#34;Selecting the file’s name, author, and output type&#34; /&gt;
+&lt;p class=&#34;caption&#34;&gt;Selecting the file’s name, author, and output type&lt;/p&gt;
+&lt;/div&gt;
+&lt;p&gt;After clicking OK it will open an example Markdown file will both code and text.&lt;/p&gt;
+&lt;div class=&#34;figure&#34;&gt;
+&lt;img src=&#34;/img/markdown_images/markdown6.PNG&#34; alt=&#34;The default R Markdown file&#34; /&gt;
+&lt;p class=&#34;caption&#34;&gt;The default R Markdown file&lt;/p&gt;
+&lt;/div&gt;
+&lt;p&gt;Let’s start with the text and its formatting. The first line of text shows two pound signs (#) followed by “R Markdown”. When a line start with # it means that that line is a header. Sections of the thesis should start with a # to make the font larger. There are 6 types of headers and each is smaller than the previous one (1 is biggest, 6 is smallest). Header 1 has one #, header 6 has 6 #. Headers after header 1 are good for making subsections.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;header-1&#34; class=&#34;section level1&#34;&gt;
+&lt;h1&gt;Header 1&lt;/h1&gt;
+&lt;div id=&#34;header-2&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Header 2&lt;/h2&gt;
+&lt;div id=&#34;header-3&#34; class=&#34;section level3&#34;&gt;
+&lt;h3&gt;Header 3&lt;/h3&gt;
+&lt;div id=&#34;header-4&#34; class=&#34;section level4&#34;&gt;
+&lt;h4&gt;Header 4&lt;/h4&gt;
+&lt;div id=&#34;header-5&#34; class=&#34;section level5&#34;&gt;
+&lt;h5&gt;Header 5&lt;/h5&gt;
+&lt;div id=&#34;header-6&#34; class=&#34;section level6&#34;&gt;
+&lt;h6&gt;Header 6&lt;/h6&gt;
+&lt;p&gt;New paragraphs can be made by ending a line with two spaces (or, for simplicity you can just have an entire blank line between paragraphs). Though it is not common in academic writing, you can make a word (or words) italic by surrounding it by a single asterix or underscore, like &lt;em&gt;so&lt;/em&gt; and &lt;em&gt;so&lt;/em&gt;. To bold a word (or words), use two asterix, like &lt;strong&gt;so&lt;/strong&gt; and &lt;strong&gt;so&lt;/strong&gt;. Include a block quote by starting a line with &amp;gt; followed by your quote&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;This is a block quoted. Good for multiline quotes.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;You can make tables using formatting in the text, but it’s easier to do so using code. We will see that soon.&lt;/p&gt;
+&lt;p&gt;Remembering all the formatting rules gets tricky and is not a good use of your time or effort. Refer to this &lt;a href=&#34;https://www.rstudio.com/wp-content/uploads/2015/03/rmarkdown-reference.pdf&#34;&gt;reference guide&lt;/a&gt; for all the rules (such as how to include links in text). The reference guide includes more formatting options than noted here. &lt;a href=&#34;http://r4ds.had.co.nz/r-markdown.html&#34;&gt;This section&lt;/a&gt; of the free book R for Data Science is also an excellent resource.&lt;/p&gt;
+&lt;p&gt;Again, focus on the content - write as if you were just using Word. Worry about formatting last.&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div id=&#34;code&#34; class=&#34;section level1&#34;&gt;
+&lt;h1&gt;Code&lt;/h1&gt;
+&lt;p&gt;The reason R Markdown is useful is because you can include code output in the file. Here is an example before we get into using code in Markdown. Below is an arbitrary graph.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;plot(1:100, type = &amp;quot;h&amp;quot;, col = &amp;quot;yellow&amp;quot;,
+     main = &amp;quot;Awful graph title&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;/post/2018-03-11-introduction-to-r-markdown_files/figure-html/unnamed-chunk-1-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;If you had put this graph in your Word Document and decided to change it you would have to replace it every time you made a change. While this is a minor procedure, it adds up if you have many graphs or decide to change the graph frequently. Below is the same graph with just the title and color changed. If this were my thesis, I could have changed the original code and been assured that the most up-to-date graph (or table, etc.) is always the one included with the thesis. Change the code and never think about it.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;plot(1:100, type = &amp;quot;h&amp;quot;, col = &amp;quot;blue&amp;quot;,
+     main = &amp;quot;Great graph title!&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;/post/2018-03-11-introduction-to-r-markdown_files/figure-html/unnamed-chunk-2-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;div id=&#34;only-use-code-to-make-output&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Only use code to make output&lt;/h2&gt;
+&lt;p&gt;Code in Markdown is for showing results. This means only include the code that makes the graphs, tables (including regression output), etc.. The code to read in data and clean it should remain in your R Scripts. The code you do include here should only read in the cleaned data and create the output to include in the document.&lt;/p&gt;
+&lt;p&gt;The terminology used here will be &lt;code&gt;chunks&lt;/code&gt;. This just means pieces of R code included among the plain text. All code must be in these chunks to be run. Inside a chunk, you can run any code you like. To make a chunk click &lt;code&gt;Insert&lt;/code&gt; and then &lt;code&gt;R&lt;/code&gt;. It will add a chunk wherever your cursor is.&lt;/p&gt;
+&lt;p&gt;If you do not have the R Markdown file in the same folder as your data, you’ll need to set the working directory in a chunk before reading the data. However, once a working directory is set, or data is read, it applies for all following chunks. You will also need to run any packages (using library()) to use them in a chunk.&lt;/p&gt;
+&lt;div class=&#34;figure&#34;&gt;
+&lt;img src=&#34;/img/markdown_images/markdown3.PNG&#34; alt=&#34;Adding a new code chunk&#34; /&gt;
+&lt;p class=&#34;caption&#34;&gt;Adding a new code chunk&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;figure&#34;&gt;
+&lt;img src=&#34;chunk_example.PNG&#34; alt=&#34;A code chunk&#34; /&gt;
+&lt;p class=&#34;caption&#34;&gt;A code chunk&lt;/p&gt;
+&lt;/div&gt;
+&lt;p&gt;Notice the three ` at the top and bottom of the chunk. Don’t touch these! They tell R that anything in it is a chunk. Inside the squiggly brackets will be instructions about how the code is outputted. Here you can specify, among other things (see reference guide for more) if the code will be outputted or just the output itself, captions for tables or graphs, and formatting for output. Include all of these options after the “r” in the squiggly brackets, separated by a comma. The most common option is &lt;code&gt;echo&lt;/code&gt; which says whether to show the code in the document or not. For the thesis you only want to show the output, not the code so include &lt;code&gt;echo = FALSE&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;Here’s an example, first with default options then with &lt;code&gt;echo = FALSE&lt;/code&gt;.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;print(&amp;quot;Hello&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## [1] &amp;quot;Hello&amp;quot;&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## [1] &amp;quot;Hello&amp;quot;&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Though you can’t see it unless looking at the Markdown file, there are two code chunks, the second which has the &lt;code&gt;echo = FALSE&lt;/code&gt; option. That is why you only see the code “print(”Hello“)” above the first result.&lt;/p&gt;
+&lt;p&gt;When you make the output file (called “knitting” the file), all code chunks will run and you will see the output included in the document. To run the code inside of R, click the green right-arrow at the top-right of each chunk. This will run all code in that chunk.&lt;/p&gt;
+&lt;div class=&#34;figure&#34;&gt;
+&lt;img src=&#34;/img/markdown_images/markdown7.PNG&#34; alt=&#34;Run the code in a chunk&#34; /&gt;
+&lt;p class=&#34;caption&#34;&gt;Run the code in a chunk&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div id=&#34;figures-and-tables&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Figures and Tables&lt;/h2&gt;
+&lt;p&gt;Above was a code chunk that makes a graph. The only addition you will likely make it to add a caption. Do this by adding the option &lt;code&gt;fig.cap = &amp;quot;&amp;quot;&lt;/code&gt; with you caption in the parentheses.&lt;/p&gt;
+&lt;div class=&#34;figure&#34;&gt;&lt;span id=&#34;fig:unnamed-chunk-6&#34;&gt;&lt;/span&gt;
+&lt;img src=&#34;/post/2018-03-11-introduction-to-r-markdown_files/figure-html/unnamed-chunk-6-1.png&#34; alt=&#34;This is an example figure caption&#34; width=&#34;672&#34; /&gt;
+&lt;p class=&#34;caption&#34;&gt;
+Figure 1: This is an example figure caption
+&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&#34;figure&#34;&gt;
+&lt;img src=&#34;/img/markdown_images/figure_caption.PNG&#34; alt=&#34;Adding a new code chunk&#34; /&gt;
+&lt;p class=&#34;caption&#34;&gt;Adding a new code chunk&lt;/p&gt;
+&lt;/div&gt;
+&lt;p&gt;There a number of packages that change how tables are displayed. We will use the basic &lt;code&gt;knitr&lt;/code&gt;. The easiest way to make a table in Markdown is to make a data.frame with all the data (and column names) you want and them show that data.frame. For this example we will subset the mtcars data (which is included in R) to just the first 5 rows and columns. The &lt;code&gt;kable&lt;/code&gt; function from the &lt;code&gt;knitr&lt;/code&gt; package will then make a nice looking table. Just like with graphs, we can use the &lt;code&gt;fig.cap = &amp;quot;&amp;quot;&lt;/code&gt; option in the chunk to add a caption.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;library(knitr)
+mtcars_small &amp;lt;- mtcars[1:5, 1:5]
+kable(mtcars_small)&lt;/code&gt;&lt;/pre&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr class=&#34;header&#34;&gt;
+&lt;th&gt;&lt;/th&gt;
+&lt;th align=&#34;right&#34;&gt;mpg&lt;/th&gt;
+&lt;th align=&#34;right&#34;&gt;cyl&lt;/th&gt;
+&lt;th align=&#34;right&#34;&gt;disp&lt;/th&gt;
+&lt;th align=&#34;right&#34;&gt;hp&lt;/th&gt;
+&lt;th align=&#34;right&#34;&gt;drat&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr class=&#34;odd&#34;&gt;
+&lt;td&gt;Mazda RX4&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;21.0&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;6&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;160&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;110&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;3.90&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;even&#34;&gt;
+&lt;td&gt;Mazda RX4 Wag&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;21.0&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;6&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;160&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;110&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;3.90&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;odd&#34;&gt;
+&lt;td&gt;Datsun 710&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;22.8&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;4&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;108&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;93&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;3.85&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;even&#34;&gt;
+&lt;td&gt;Hornet 4 Drive&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;21.4&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;6&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;258&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;110&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;3.08&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;odd&#34;&gt;
+&lt;td&gt;Hornet Sportabout&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;18.7&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;8&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;360&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;175&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;3.15&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div id=&#34;finally-making-the-output-file&#34; class=&#34;section level1&#34;&gt;
+&lt;h1&gt;Finally, making the output file&lt;/h1&gt;
+&lt;p&gt;To create the Word or PDF output click &lt;code&gt;Knit&lt;/code&gt; and it will create the output in the format set in the very top. To change this format click the white down arrow directly to the right of &lt;code&gt;Knit&lt;/code&gt; and it will drop-down a menu with output options. Click the option you want and it will output it in that format and change that to the new default. Sometimes it takes a while for it to output, so be patient. And sometimes it fails so just try to output again.&lt;/p&gt;
+&lt;div class=&#34;figure&#34;&gt;
+&lt;img src=&#34;/img/markdown_images/markdown4.PNG&#34; alt=&#34;Change the output format&#34; /&gt;
+&lt;p class=&#34;caption&#34;&gt;Change the output format&lt;/p&gt;
+&lt;/div&gt;
+&lt;p&gt;Markdown has many more options than presented here. This lesson should get you through the thesis. If you are interested in Markdown, there are great resources online.&lt;/p&gt;
+&lt;p&gt;Future lessons:&lt;/p&gt;
+&lt;ol style=&#34;list-style-type: decimal&#34;&gt;
+&lt;li&gt;Citations&lt;br /&gt;
+&lt;/li&gt;
+&lt;li&gt;Fancy tables&lt;br /&gt;
+&lt;/li&gt;
+&lt;li&gt;Referencing figures and tables&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;
+</description>
+    </item>
+    
+    <item>
       <title>Where Recreational Marijuana is Sold in California</title>
       <link>/where-recreational-marijuana-is-sold-in-california/</link>
       <pubDate>Mon, 01 Jan 2018 00:00:00 +0000</pubDate>

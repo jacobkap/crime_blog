@@ -1,0 +1,554 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="theme" content="hugo-academic">
+  <meta name="generator" content="Hugo 0.30.2" />
+  <meta name="author" content="Jacob Kaplan">
+  <meta name="description" content="PhD Student">
+
+  
+  <link rel="alternate" hreflang="en-us" href="/introduction-to-r-markdown-for-a-thesis/">
+
+  
+  
+
+
+  
+
+  
+  
+  
+  
+    
+  
+  
+    
+    
+      
+        <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css">
+      
+    
+  
+  
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha512-6MXa8B6uaO18Hid6blRMetEIoPqHf7Ux1tnyIQdpt9qI5OACx7C+O3IVTr98vwGnlcg0LOLa02i9Y1HpVhlfiw==" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/academicons/1.8.1/css/academicons.min.css" integrity="sha512-NThgw3XKQ1absAahW6to7Ey42uycrVvfNfyjqcFNgCmOCQ5AR4AO0SiXrN+8ZtYeappp56lk1WtvjVmEa+VR6A==" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha512-SfTiTlX6kk+qitfevl/7LibUOeJWlt9rbyDn92a1DqWOw9vWG2MFoays0sgObmWazO5BQPiFucnnEAjpAB+/Sw==" crossorigin="anonymous">
+  
+  
+  
+  
+  <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Montserrat:400,700%7cRoboto:400,400italic,700%7cRoboto&#43;Mono">
+  
+  <link rel="stylesheet" href="/styles.css">
+  
+
+  
+    <script>
+      window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+      ga('create', 'UA-99359926-2', 'auto');
+      ga('require', 'eventTracker');
+      ga('require', 'outboundLinkTracker');
+      ga('require', 'urlChangeTracker');
+      ga('send', 'pageview');
+    </script>
+    <script async src="//www.google-analytics.com/analytics.js"></script>
+    
+    <script async src="https://cdnjs.cloudflare.com/ajax/libs/autotrack/2.4.1/autotrack.js" integrity="sha512-HUmooslVKj4m6OBu0OgzjXXr+QuFYy/k7eLI5jdeEy/F4RSgMn6XRWRGkFi5IFaFgy7uFTkegp3Z0XnJf3Jq+g==" crossorigin="anonymous"></script>
+    
+  
+
+  
+  <link rel="alternate" href="/index.xml" type="application/rss+xml" title="Crime By The Numbers">
+  <link rel="feed" href="/index.xml" type="application/rss+xml" title="Crime By The Numbers">
+  
+
+  <link rel="manifest" href="/site.webmanifest">
+  <link rel="icon" type="image/png" href="/img/icon.png">
+  <link rel="apple-touch-icon" type="image/png" href="/img/icon-192.png">
+
+  <link rel="canonical" href="/introduction-to-r-markdown-for-a-thesis/">
+
+  <meta property="twitter:card" content="summary_large_image">
+  
+  <meta property="og:site_name" content="Crime By The Numbers">
+  <meta property="og:url" content="/introduction-to-r-markdown-for-a-thesis/">
+  <meta property="og:title" content="Introduction to R Markdown for a Thesis | Crime By The Numbers">
+  <meta property="og:description" content="">
+  <meta property="og:locale" content="en-us">
+  
+  <meta property="article:published_time" content="2018-03-12T00:00:00&#43;00:00">
+  
+  <meta property="article:modified_time" content="2018-03-12T00:00:00&#43;00:00">
+  
+
+  
+
+  <title>Introduction to R Markdown for a Thesis | Crime By The Numbers</title>
+
+</head>
+<body id="top" data-spy="scroll" data-target="#toc" data-offset="71" >
+
+<nav class="navbar navbar-default navbar-fixed-top" id="navbar-main">
+  <div class="container">
+
+    
+    <div class="navbar-header">
+      
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+              data-target=".navbar-collapse" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      
+      <a class="navbar-brand" href="/">Crime By The Numbers</a>
+    </div>
+
+    
+    <div class="collapse navbar-collapse">
+
+      
+      
+      <ul class="nav navbar-nav navbar-right">
+        
+
+        
+
+        
+          
+        
+
+        <li class="nav-item">
+          <a href="/#posts">
+            
+            <span>Posts</span>
+            
+          </a>
+        </li>
+
+        
+        
+
+        
+
+        
+          
+        
+
+        <li class="nav-item">
+          <a href="/#about">
+            
+            <span>About</span>
+            
+          </a>
+        </li>
+
+        
+        
+      
+
+      
+      </ul>
+
+    </div>
+  </div>
+</nav>
+
+
+<article class="article" itemscope itemtype="http://schema.org/Article">
+
+  
+
+
+  <div class="article-container">
+    <div class="article-inner">
+      <h1 itemprop="name">Introduction to R Markdown for a Thesis</h1>
+
+      
+
+<div class="article-metadata">
+
+  <span class="article-date">
+    
+    <time datetime="2018-03-12 00:00:00 &#43;0000 UTC" itemprop="datePublished">
+      Mar 12, 2018
+    </time>
+  </span>
+
+  
+  <span class="middot-divider"></span>
+  <span class="article-reading-time">
+    8 min read
+  </span>
+  
+
+  
+  
+
+  
+  
+  
+  <span class="middot-divider"></span>
+  <span class="article-categories">
+    <i class="fa fa-folder"></i>
+    
+    <a href="/categories/r">R</a
+    >
+    
+  </span>
+  
+  
+
+  
+  
+<div class="share-box" aria-hidden="true">
+  <ul class="share">
+    <li>
+      <a class="twitter"
+         href="https://twitter.com/intent/tweet?text=Introduction%20to%20R%20Markdown%20for%20a%20Thesis&amp;url=%2fintroduction-to-r-markdown-for-a-thesis%2f"
+         target="_blank" rel="noopener">
+        <i class="fa fa-twitter"></i>
+      </a>
+    </li>
+    <li>
+      <a class="facebook"
+         href="https://www.facebook.com/sharer.php?u=%2fintroduction-to-r-markdown-for-a-thesis%2f"
+         target="_blank" rel="noopener">
+        <i class="fa fa-facebook"></i>
+      </a>
+    </li>
+    <li>
+      <a class="linkedin"
+         href="https://www.linkedin.com/shareArticle?mini=true&amp;url=%2fintroduction-to-r-markdown-for-a-thesis%2f&amp;title=Introduction%20to%20R%20Markdown%20for%20a%20Thesis"
+         target="_blank" rel="noopener">
+        <i class="fa fa-linkedin"></i>
+      </a>
+    </li>
+    <li>
+      <a class="weibo"
+         href="http://service.weibo.com/share/share.php?url=%2fintroduction-to-r-markdown-for-a-thesis%2f&amp;title=Introduction%20to%20R%20Markdown%20for%20a%20Thesis"
+         target="_blank" rel="noopener">
+        <i class="fa fa-weibo"></i>
+      </a>
+    </li>
+    <li>
+      <a class="email"
+         href="mailto:?subject=Introduction%20to%20R%20Markdown%20for%20a%20Thesis&amp;body=%2fintroduction-to-r-markdown-for-a-thesis%2f">
+        <i class="fa fa-envelope"></i>
+      </a>
+    </li>
+  </ul>
+</div>
+
+
+  
+
+</div>
+
+
+      <div class="article-style" itemprop="articleBody">
+        <p>Writing a thesis is stressful. R Markdown can help reducing the number of things you have to think about. This guide, and following ones, can be used as an introduction to R Markdown, specifically for people working on a research thesis.</p>
+<div id="abstract" class="section level2">
+<h2>Abstract</h2>
+<p><em>R’s version of Markdown is essentially a Word document that allows R code. You can writie in it just like in Word and include R code which will output right in the document. This is useful because if you change you code (such as changing a graph), it will automatically be changed in the document. You no longer have to remember to copy over the new results (regression results, tables, graphs, etc.) from R to Word. If you are changing your results (and you will more than you expect), using R Markdown will save you time</em></p>
+</div>
+<div id="plain-text" class="section level1">
+<h1>Plain text</h1>
+<p>Markdown works nearly identical to Word. The major difference is that it allows R code and you have to do more formatting yourself. If you do use Markdown, the main advice is to <strong>ignore formatting until the end</strong>! Just ignore formatting until you absolutely need to. That said, let’s start with making a Markdown file in RStudio.</p>
+<div class="figure">
+<img src="/img/markdown_images/markdown1.png" alt="Opening a new R Markdown file" />
+<p class="caption">Opening a new R Markdown file</p>
+</div>
+<p>As seen in Figure 1, you make a new R Markdown file using the same menu as making an R Script file, but now select <code>R Markdown...</code>. From here it’ll open up a window where you select the title, author, and type of output. You can always change all three of these selecting right in the Markdown file. Selecting PDF may require you to download additional software to get it to output - some OS may already have the software installed.</p>
+<div class="figure">
+<img src="/img/markdown_images/markdown2.png" alt="Selecting the file’s name, author, and output type" />
+<p class="caption">Selecting the file’s name, author, and output type</p>
+</div>
+<p>After clicking OK it will open an example Markdown file will both code and text.</p>
+<div class="figure">
+<img src="/img/markdown_images/markdown6.PNG" alt="The default R Markdown file" />
+<p class="caption">The default R Markdown file</p>
+</div>
+<p>Let’s start with the text and its formatting. The first line of text shows two pound signs (#) followed by “R Markdown”. When a line start with # it means that that line is a header. Sections of the thesis should start with a # to make the font larger. There are 6 types of headers and each is smaller than the previous one (1 is biggest, 6 is smallest). Header 1 has one #, header 6 has 6 #. Headers after header 1 are good for making subsections.</p>
+</div>
+<div id="header-1" class="section level1">
+<h1>Header 1</h1>
+<div id="header-2" class="section level2">
+<h2>Header 2</h2>
+<div id="header-3" class="section level3">
+<h3>Header 3</h3>
+<div id="header-4" class="section level4">
+<h4>Header 4</h4>
+<div id="header-5" class="section level5">
+<h5>Header 5</h5>
+<div id="header-6" class="section level6">
+<h6>Header 6</h6>
+<p>New paragraphs can be made by ending a line with two spaces (or, for simplicity you can just have an entire blank line between paragraphs). Though it is not common in academic writing, you can make a word (or words) italic by surrounding it by a single asterix or underscore, like <em>so</em> and <em>so</em>. To bold a word (or words), use two asterix, like <strong>so</strong> and <strong>so</strong>. Include a block quote by starting a line with &gt; followed by your quote</p>
+<blockquote>
+<p>This is a block quoted. Good for multiline quotes.</p>
+</blockquote>
+<p>You can make tables using formatting in the text, but it’s easier to do so using code. We will see that soon.</p>
+<p>Remembering all the formatting rules gets tricky and is not a good use of your time or effort. Refer to this <a href="https://www.rstudio.com/wp-content/uploads/2015/03/rmarkdown-reference.pdf">reference guide</a> for all the rules (such as how to include links in text). The reference guide includes more formatting options than noted here. <a href="http://r4ds.had.co.nz/r-markdown.html">This section</a> of the free book R for Data Science is also an excellent resource.</p>
+<p>Again, focus on the content - write as if you were just using Word. Worry about formatting last.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div id="code" class="section level1">
+<h1>Code</h1>
+<p>The reason R Markdown is useful is because you can include code output in the file. Here is an example before we get into using code in Markdown. Below is an arbitrary graph.</p>
+<pre class="r"><code>plot(1:100, type = &quot;h&quot;, col = &quot;yellow&quot;,
+     main = &quot;Awful graph title&quot;)</code></pre>
+<p><img src="/post/2018-03-11-introduction-to-r-markdown_files/figure-html/unnamed-chunk-1-1.png" width="672" /></p>
+<p>If you had put this graph in your Word Document and decided to change it you would have to replace it every time you made a change. While this is a minor procedure, it adds up if you have many graphs or decide to change the graph frequently. Below is the same graph with just the title and color changed. If this were my thesis, I could have changed the original code and been assured that the most up-to-date graph (or table, etc.) is always the one included with the thesis. Change the code and never think about it.</p>
+<pre class="r"><code>plot(1:100, type = &quot;h&quot;, col = &quot;blue&quot;,
+     main = &quot;Great graph title!&quot;)</code></pre>
+<p><img src="/post/2018-03-11-introduction-to-r-markdown_files/figure-html/unnamed-chunk-2-1.png" width="672" /></p>
+<div id="only-use-code-to-make-output" class="section level2">
+<h2>Only use code to make output</h2>
+<p>Code in Markdown is for showing results. This means only include the code that makes the graphs, tables (including regression output), etc.. The code to read in data and clean it should remain in your R Scripts. The code you do include here should only read in the cleaned data and create the output to include in the document.</p>
+<p>The terminology used here will be <code>chunks</code>. This just means pieces of R code included among the plain text. All code must be in these chunks to be run. Inside a chunk, you can run any code you like. To make a chunk click <code>Insert</code> and then <code>R</code>. It will add a chunk wherever your cursor is.</p>
+<p>If you do not have the R Markdown file in the same folder as your data, you’ll need to set the working directory in a chunk before reading the data. However, once a working directory is set, or data is read, it applies for all following chunks. You will also need to run any packages (using library()) to use them in a chunk.</p>
+<div class="figure">
+<img src="/img/markdown_images/markdown3.PNG" alt="Adding a new code chunk" />
+<p class="caption">Adding a new code chunk</p>
+</div>
+<div class="figure">
+<img src="chunk_example.PNG" alt="A code chunk" />
+<p class="caption">A code chunk</p>
+</div>
+<p>Notice the three ` at the top and bottom of the chunk. Don’t touch these! They tell R that anything in it is a chunk. Inside the squiggly brackets will be instructions about how the code is outputted. Here you can specify, among other things (see reference guide for more) if the code will be outputted or just the output itself, captions for tables or graphs, and formatting for output. Include all of these options after the “r” in the squiggly brackets, separated by a comma. The most common option is <code>echo</code> which says whether to show the code in the document or not. For the thesis you only want to show the output, not the code so include <code>echo = FALSE</code>.</p>
+<p>Here’s an example, first with default options then with <code>echo = FALSE</code>.</p>
+<pre class="r"><code>print(&quot;Hello&quot;)</code></pre>
+<pre><code>## [1] &quot;Hello&quot;</code></pre>
+<pre><code>## [1] &quot;Hello&quot;</code></pre>
+<p>Though you can’t see it unless looking at the Markdown file, there are two code chunks, the second which has the <code>echo = FALSE</code> option. That is why you only see the code “print(”Hello“)” above the first result.</p>
+<p>When you make the output file (called “knitting” the file), all code chunks will run and you will see the output included in the document. To run the code inside of R, click the green right-arrow at the top-right of each chunk. This will run all code in that chunk.</p>
+<div class="figure">
+<img src="/img/markdown_images/markdown7.PNG" alt="Run the code in a chunk" />
+<p class="caption">Run the code in a chunk</p>
+</div>
+</div>
+<div id="figures-and-tables" class="section level2">
+<h2>Figures and Tables</h2>
+<p>Above was a code chunk that makes a graph. The only addition you will likely make it to add a caption. Do this by adding the option <code>fig.cap = &quot;&quot;</code> with you caption in the parentheses.</p>
+<div class="figure"><span id="fig:unnamed-chunk-6"></span>
+<img src="/post/2018-03-11-introduction-to-r-markdown_files/figure-html/unnamed-chunk-6-1.png" alt="This is an example figure caption" width="672" />
+<p class="caption">
+Figure 1: This is an example figure caption
+</p>
+</div>
+<div class="figure">
+<img src="/img/markdown_images/figure_caption.PNG" alt="Adding a new code chunk" />
+<p class="caption">Adding a new code chunk</p>
+</div>
+<p>There a number of packages that change how tables are displayed. We will use the basic <code>knitr</code>. The easiest way to make a table in Markdown is to make a data.frame with all the data (and column names) you want and them show that data.frame. For this example we will subset the mtcars data (which is included in R) to just the first 5 rows and columns. The <code>kable</code> function from the <code>knitr</code> package will then make a nice looking table. Just like with graphs, we can use the <code>fig.cap = &quot;&quot;</code> option in the chunk to add a caption.</p>
+<pre class="r"><code>library(knitr)
+mtcars_small &lt;- mtcars[1:5, 1:5]
+kable(mtcars_small)</code></pre>
+<table>
+<thead>
+<tr class="header">
+<th></th>
+<th align="right">mpg</th>
+<th align="right">cyl</th>
+<th align="right">disp</th>
+<th align="right">hp</th>
+<th align="right">drat</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Mazda RX4</td>
+<td align="right">21.0</td>
+<td align="right">6</td>
+<td align="right">160</td>
+<td align="right">110</td>
+<td align="right">3.90</td>
+</tr>
+<tr class="even">
+<td>Mazda RX4 Wag</td>
+<td align="right">21.0</td>
+<td align="right">6</td>
+<td align="right">160</td>
+<td align="right">110</td>
+<td align="right">3.90</td>
+</tr>
+<tr class="odd">
+<td>Datsun 710</td>
+<td align="right">22.8</td>
+<td align="right">4</td>
+<td align="right">108</td>
+<td align="right">93</td>
+<td align="right">3.85</td>
+</tr>
+<tr class="even">
+<td>Hornet 4 Drive</td>
+<td align="right">21.4</td>
+<td align="right">6</td>
+<td align="right">258</td>
+<td align="right">110</td>
+<td align="right">3.08</td>
+</tr>
+<tr class="odd">
+<td>Hornet Sportabout</td>
+<td align="right">18.7</td>
+<td align="right">8</td>
+<td align="right">360</td>
+<td align="right">175</td>
+<td align="right">3.15</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div id="finally-making-the-output-file" class="section level1">
+<h1>Finally, making the output file</h1>
+<p>To create the Word or PDF output click <code>Knit</code> and it will create the output in the format set in the very top. To change this format click the white down arrow directly to the right of <code>Knit</code> and it will drop-down a menu with output options. Click the option you want and it will output it in that format and change that to the new default. Sometimes it takes a while for it to output, so be patient. And sometimes it fails so just try to output again.</p>
+<div class="figure">
+<img src="/img/markdown_images/markdown4.PNG" alt="Change the output format" />
+<p class="caption">Change the output format</p>
+</div>
+<p>Markdown has many more options than presented here. This lesson should get you through the thesis. If you are interested in Markdown, there are great resources online.</p>
+<p>Future lessons:</p>
+<ol style="list-style-type: decimal">
+<li>Citations<br />
+</li>
+<li>Fancy tables<br />
+</li>
+<li>Referencing figures and tables</li>
+</ol>
+</div>
+
+      </div>
+
+      
+
+
+<div class="article-tags">
+  
+  <a class="btn btn-primary btn-outline" href="/tags/r">R</a>
+  
+</div>
+
+
+
+    </div>
+  </div>
+
+</article>
+
+
+
+<div class="article-container article-widget">
+  <div class="hr-light"></div>
+  <h3>Related</h3>
+  <ul>
+    
+    <li><a href="/where-recreational-marijuana-is-sold-in-california/">Where Recreational Marijuana is Sold in California</a></li>
+    
+    <li><a href="/reading-fixed-width-ascii-files-into-r/">Reading Fixed-Width ASCII Files into R</a></li>
+    
+    <li><a href="/downloading-data-from-the-fbi-ucr-2016/">Downloading data from the FBI&#39;s UCR 2016</a></li>
+    
+  </ul>
+</div>
+
+
+
+
+<div class="article-container">
+  
+
+</div>
+
+<footer class="site-footer">
+  <div class="container">
+    <p class="powered-by">
+
+      &copy; 2017 Jacob Kaplan &middot; 
+
+      Powered by the
+      <a href="https://sourcethemes.com/academic/" target="_blank" rel="noopener">Academic theme</a> for
+      <a href="https://gohugo.io" target="_blank" rel="noopener">Hugo</a>.
+
+      <span class="pull-right" aria-hidden="true">
+        <a href="#" id="back_to_top">
+          <span class="button_icon">
+            <i class="fa fa-chevron-up fa-2x"></i>
+          </span>
+        </a>
+      </span>
+
+    </p>
+  </div>
+</footer>
+
+
+<div id="modal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close btn-large" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Cite</h4>
+      </div>
+      <div>
+        <pre><code class="modal-body tex"></code></pre>
+      </div>
+      <div class="modal-footer">
+        <a class="btn btn-primary btn-outline js-copy-cite" href="#" target="_blank">
+          <i class="fa fa-copy"></i> Copy
+        </a>
+        <a class="btn btn-primary btn-outline js-download-cite" href="#" target="_blank">
+          <i class="fa fa-download"></i> Download
+        </a>
+        <div id="modal-error"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+    
+
+    
+
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js" integrity="sha512-3P8rXCuGJdNZOnUx/03c1jOTnMn3rP63nBip5gOP2qmUh5YAdVAvFZ1E+QLZZbC1rtMrQb+mah3AfYW11RUrWA==" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.imagesloaded/4.1.3/imagesloaded.pkgd.min.js" integrity="sha512-umsR78NN0D23AzgoZ11K7raBD+R6hqKojyBZs1w8WvYlsI+QuKRGBx3LFCwhatzBunCjDuJpDHwxD13sLMbpRA==" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha512-iztkobsvnjKfAtTNdHkGVjAYTrrtlC7mGp/54c40wowO7LhURYl3gVzzcEqGl/qKXQltJ2HwMrdLcNUdo+N/RQ==" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.isotope/3.0.4/isotope.pkgd.min.js" integrity="sha512-VDBOIlDbuC4VWxGJNmuFRQ0Li0SKkDpmGyuhAG5LTDLd/dJ/S0WMVxriR2Y+CyPL5gzjpN4f/6iqWVBJlht0tQ==" crossorigin="anonymous"></script>
+    
+    
+    <script src="/js/hugo-academic.js"></script>
+    
+
+    
+    
+      
+      
+      <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js" integrity="sha256-/BfiIkHlHoVihZdc6TFuj7MmJ0TWcWsMXkeDFwhi0zw=" crossorigin="anonymous"></script>
+      
+
+      
+
+      
+
+      <script>hljs.initHighlightingOnLoad();</script>
+    
+
+    
+    
+
+  </body>
+</html>
+
