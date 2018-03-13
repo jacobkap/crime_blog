@@ -256,22 +256,24 @@
 <p>If you’d like to follow along with the actual Markdown file, here is a <a href="https://raw.githubusercontent.com/jacobkap/crime_blog/master/content/post/2018-03-11-introduction-to-r-markdown.Rmd">link</a> to that. And here is a <a href="https://github.com/jacobkap/crime_blog/tree/master/static/img/markdown_images">link to the images included</a> in this post - you’ll need those images to fully run the Markdown file (or you can delete the references to them.)</p>
 <div id="abstract" class="section level2">
 <h2>Abstract</h2>
-<p><em>R’s version of Markdown is essentially a Word document that allows R code. You can writie in it just like in Word and include R code which will output right in the document. This is useful because if you change you code (such as changing a graph), it will automatically be changed in the document. You no longer have to remember to copy over the new results (regression results, tables, graphs, etc.) from R to Word. If you are changing your results (and you will more than you expect), using R Markdown will save you time</em></p>
+<p><em>R’s version of Markdown is essentially a Word document that allows R code. You can write in it just like in Word and include R code which will output right in the document. This is useful because if you change your code (such as changing a graph), it will also be changed in the document. You no longer have to remember to copy over the new results (graphs, tables, etc.) from R to Word. If you are changing your results (and you will more than you expect), using R Markdown will save you time.</em></p>
 </div>
 <div id="plain-text" class="section level1">
 <h1>Plain text</h1>
-<p>Markdown works nearly identical to Word. The major difference is that it allows R code and you have to do more formatting yourself. If you do use Markdown, the main advice is to <strong>ignore formatting until the end</strong>! Just ignore formatting until you absolutely need to. It is easiest to output to an HTML file until you are ready to format do formatting. HTML generally ignores formatting issues (such as figure alignment) that PDF or Word encounter.</p>
+<p>Markdown works nearly identical to Word. The major difference is that it allows R code and you have to do more formatting yourself. If you do use Markdown, the main advice is to <strong>ignore formatting until the end!</strong> Just ignore formatting until you absolutely need to. It is easiest to output to an HTML file until you are ready to format. HTML generally ignores formatting issues (such as figure alignment) that PDF or Word encounter.</p>
 <p>That said, let’s start with making a Markdown file in RStudio.</p>
 <div class="figure">
 <img src="/img/markdown_images/markdown1.png" alt="Opening a new R Markdown file" />
 <p class="caption">Opening a new R Markdown file</p>
 </div>
-<p>As seen in Figure 1, you make a new R Markdown file using the same menu as making an R Script file, but now select <code>R Markdown...</code>. From here it’ll open up a window where you select the title, author, and type of output. You can always change all three of these selections right in the Markdown file. Selecting PDF may require you to download additional software to get it to output - some OS may already have the software installed. For a nice guide to using PDF with R Markdown, see <a href="https://medium.com/@sorenlind/create-pdf-.reports-using-r-r-markdown-latex-and-knitr-on-windows-10-952b0c48bfa9">here</a>. Formatting is also trickier in PDF than in HTML or Word.</p>
+<p>As seen above, you make a new R Markdown file using the same menu as making an R Script file, but now select <code>R Markdown...</code>. From here it’ll open up a window where you select the title, author, and type of output. You can always change all three of these selections right in the Markdown file. Selecting PDF may require you to download additional software to get it to output - some OS may already have the software installed. For a nice guide to using PDF with R Markdown, see <a href="https://medium.com/@sorenlind/create-pdf-.reports-using-r-r-markdown-latex-and-knitr-on-windows-10-952b0c48bfa9">here</a>. Formatting is also trickier in PDF than in HTML or Word.</p>
+<p><img src="/img/markdown_images/markdown2.png" alt="Selecting the file’s name, author, and output type" />
+When you click OK, it will open a new R Markdown file that is already populated with example plain text and code. You can delete this entirely or modify what’s there to work with what you need.</p>
 <div class="figure">
-<img src="/img/markdown_images/markdown2.png" alt="Selecting the file’s name, author, and output type" />
-<p class="caption">Selecting the file’s name, author, and output type</p>
+<img src="/img/markdown_images/markdown6.png" alt="The default R Markdown file" />
+<p class="caption">The default R Markdown file</p>
 </div>
-<p>Let’s start with the text and its formatting. The first line of text shows two pound signs (#) followed by “R Markdown”. When a line start with # it means that that line is a header. Sections of the thesis should start with a # to make the font larger. There are 6 types of headers and each is smaller than the previous one (1 is biggest, 6 is smallest). Header 1 has one #, header 6 has 6 #. Headers after header 1 are good for making subsections.</p>
+<p>Let’s start with the text and its formatting. The first line of text shows two pound signs (#) followed by “R Markdown”. When a line start with # it means that that line is a header. Sections of the thesis should start with an # to indicate a new section. There are 6 types of headers and each is smaller than the previous one (1 is biggest, 6 is smallest). Header 1 has one # (e.g. # Header 1), header 6 has 6 # (e.g. ###### Header 6). Headers after header 1 are good for making subsections.</p>
 </div>
 <div id="header-1" class="section level1">
 <h1>Header 1</h1>

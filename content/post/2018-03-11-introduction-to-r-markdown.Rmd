@@ -15,21 +15,24 @@ If you'd like to follow along with the actual Markdown file, here is a [link](ht
 
 
 ## Abstract
-*R's version of Markdown is essentially a Word document that allows R code. You can writie in it just like in Word and include R code which will output right in the document. This is useful because if you change you code (such as changing a graph), it will automatically be changed in the document. You no longer have to remember to copy over the new results (regression results, tables, graphs, etc.) from R to Word. If you are changing your results (and you will more than you expect), using R Markdown will save you time*
+*R's version of Markdown is essentially a Word document that allows R code. You can write in it just like in Word and include R code which will output right in the document. This is useful because if you change your code (such as changing a graph), it will also be changed in the document. You no longer have to remember to copy over the new results (graphs, tables, etc.) from R to Word. If you are changing your results (and you will more than you expect), using R Markdown will save you time.*
 
 # Plain text
 
-Markdown works nearly identical to Word. The major difference is that it allows R code and you have to do more formatting yourself. If you do use Markdown, the main advice is to **ignore formatting until the end**! Just ignore formatting until you absolutely need to. It is easiest to output to an HTML file until you are ready to format do formatting. HTML generally ignores formatting issues (such as figure alignment) that PDF or Word encounter. 
+Markdown works nearly identical to Word. The major difference is that it allows R code and you have to do more formatting yourself. If you do use Markdown, the main advice is to **ignore formatting until the end!** Just ignore formatting until you absolutely need to. It is easiest to output to an HTML file until you are ready to format. HTML generally ignores formatting issues (such as figure alignment) that PDF or Word encounter. 
 
 That said, let's start with making a Markdown file in RStudio.
 
 ![Opening a new R Markdown file](/img/markdown_images/markdown1.png)
 
-As seen in Figure 1, you make a new R Markdown file using the same menu as making an R Script file, but now select `R Markdown...`. From here it'll open up a window where you select the title, author, and type of output. You can always change all three of these selections right in the Markdown file. Selecting PDF may require you to download additional software to get it to output - some OS may already have the software installed. For a nice guide to using PDF with R Markdown, see  [here](https://medium.com/@sorenlind/create-pdf-.reports-using-r-r-markdown-latex-and-knitr-on-windows-10-952b0c48bfa9). Formatting is also trickier in PDF than in HTML or Word.
+As seen above, you make a new R Markdown file using the same menu as making an R Script file, but now select `R Markdown...`. From here it'll open up a window where you select the title, author, and type of output. You can always change all three of these selections right in the Markdown file. Selecting PDF may require you to download additional software to get it to output - some OS may already have the software installed. For a nice guide to using PDF with R Markdown, see  [here](https://medium.com/@sorenlind/create-pdf-.reports-using-r-r-markdown-latex-and-knitr-on-windows-10-952b0c48bfa9). Formatting is also trickier in PDF than in HTML or Word.
 
 ![Selecting the file's name, author, and output type](/img/markdown_images/markdown2.png)
+When you click OK, it will open a new R Markdown file that is already populated with example plain text and code. You can delete this entirely or modify what's there to work with what you need. 
 
-Let's start with the text and its formatting. The first line of text shows two pound signs (#) followed by "R Markdown". When a line start with # it means that that line is a header. Sections of the thesis should start with a # to make the font larger. There are 6 types of headers and each is smaller than the previous one (1 is biggest, 6 is smallest). Header 1 has one #, header 6 has 6 #. Headers after header 1 are good for making subsections.  
+![The default R Markdown file](/img/markdown_images/markdown6.png)
+
+Let's start with the text and its formatting. The first line of text shows two pound signs (#) followed by "R Markdown". When a line start with # it means that that line is a header. Sections of the thesis should start with an # to indicate a new section. There are 6 types of headers and each is smaller than the previous one (1 is biggest, 6 is smallest). Header 1 has one # (e.g. # Header 1), header 6 has 6 # (e.g. ###### Header 6). Headers after header 1 are good for making subsections.  
 
 # Header 1
 ## Header 2
