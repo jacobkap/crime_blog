@@ -102,7 +102,7 @@ When you make the output file (called "knitting" the file), all code chunks will
 
 ## Figures and Tables
 
-Above was a code chunk that makes a graph. The only addition you will likely make to this type of code is to add a caption. Do this by adding the option `fig.cap = ""` with the caption in the quotes. 
+Above was a code chunk that makes a graph. The only addition you will likely make to this type of code is to add a caption. Do this by adding the option `fig.cap = ""` with the caption in the quotes.
 
 ```{r, echo = FALSE, fig.cap = "This is an example figure caption"}
 plot(1:100, type = "h", col = "blue",
