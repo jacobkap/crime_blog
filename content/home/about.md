@@ -11,8 +11,7 @@ weight = 500
 [interests]
   interests = [
     "Crime Prevention Through Environmental Design",
-    "Improving access to data",
-    "Effect of marijuana legalization on violent crime"
+    "Improving access to data"
   ]
 
 # List your qualifications (such as academic degrees).

@@ -1,0 +1,29 @@
+---
+title: "United States Governors 1775-2018"
+author: "Jacob Kaplan"
+date: "2018-03-21"
+slug: united-states-governors-1775-2018
+categories:
+  - Data
+tags:
+  - other-data
+summary: "Data of governor and party for all states and territories 1775-2018."
+---
+
+This is a data set containing the name and party of every state or territory governor from the start of this country (technically 1775) to 2018. 
+
+The original data (link below) had governor as the unit. It gave the governor's name, the state, the party (or parties) they belonged to and which years they were in office. I changed this to state-year unit so for each state and year it says who the governor was and their party. For years 1950-2018 I made minor changes to the party variable. For example, if a governor (e.g. Ronald Reagan) was reported as belonging to multiple parties in their life, I changed the party for a given year to the party they belonged to that year. I DID NOT make any changes at all for years prior to 1950.
+
+
+As an example, here is the first 6 rows of the data. 
+
+```{r echo = FALSE}
+load("data/governors.rda")
+knitr::kable(head(governors))
+```
+
+The data is [here](https://www.openicpsr.org/openicpsr/project/102000/version/V1/view).
+
+The website where I got the raw data is [here](https://www.nga.org/cms/home).
+
+The GitHub page containing code to download and clean the data is [here](https://github.com/jacobkap/governors).

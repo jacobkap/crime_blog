@@ -5,6 +5,42 @@
     
     <url>
     
+      <loc>/project/united-states-governors-1775-2018/</loc>
+      <lastmod>2018-03-21T00:00:00+00:00</lastmod>
+    </url>
+    
+  
+    
+    
+    <url>
+    
+      <loc>/project/asciisetupreader/</loc>
+      <lastmod>2018-03-21T00:00:00+00:00</lastmod>
+    </url>
+    
+  
+    
+    
+    <url>
+    
+      <loc>/project/fastdummies/</loc>
+      <lastmod>2018-03-21T00:00:00+00:00</lastmod>
+    </url>
+    
+  
+    
+    
+    <url>
+    
+      <loc>/project/downloading-data-from-the-fbi-ucr-2016/</loc>
+      <lastmod>2018-03-20T00:00:00+00:00</lastmod>
+    </url>
+    
+  
+    
+    
+    <url>
+    
       <loc>/introduction-to-r-markdown-for-a-thesis/</loc>
       <lastmod>2018-03-12T00:00:00+00:00</lastmod>
     </url>
@@ -98,8 +134,8 @@
     
     <url>
     
-      <loc>/tags/data/</loc>
-      <lastmod>2017-11-18T00:00:00+00:00</lastmod>
+      <loc>/tags/crime-data/</loc>
+      <lastmod>2018-03-20T00:00:00+00:00</lastmod>
       <priority>0</priority>
     </url>
     
@@ -109,6 +145,16 @@
     <url>
     
       <loc>/categories/data/</loc>
+      <lastmod>2018-03-21T00:00:00+00:00</lastmod>
+      <priority>0</priority>
+    </url>
+    
+  
+    
+    
+    <url>
+    
+      <loc>/tags/data/</loc>
       <lastmod>2017-11-18T00:00:00+00:00</lastmod>
       <priority>0</priority>
     </url>
@@ -148,7 +194,37 @@
     
     <url>
     
+      <loc>/tags/other-data/</loc>
+      <lastmod>2018-03-21T00:00:00+00:00</lastmod>
+      <priority>0</priority>
+    </url>
+    
+  
+    
+    
+    <url>
+    
+      <loc>/project/</loc>
+      <lastmod>2018-03-21T00:00:00+00:00</lastmod>
+      <priority>0</priority>
+    </url>
+    
+  
+    
+    
+    <url>
+    
       <loc>/publication_types/</loc>
+      <priority>0</priority>
+    </url>
+    
+  
+    
+    
+    <url>
+    
+      <loc>/categories/r/</loc>
+      <lastmod>2018-03-12T00:00:00+00:00</lastmod>
       <priority>0</priority>
     </url>
     
@@ -167,8 +243,8 @@
     
     <url>
     
-      <loc>/categories/r/</loc>
-      <lastmod>2018-03-12T00:00:00+00:00</lastmod>
+      <loc>/tags/r-packages/</loc>
+      <lastmod>2018-03-21T00:00:00+00:00</lastmod>
       <priority>0</priority>
     </url>
     

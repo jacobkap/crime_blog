@@ -1,40 +1,119 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Projects on Academic</title>
+    <title>Projects on Crime By The Numbers</title>
     <link>/project/</link>
-    <description>Recent content in Projects on Academic</description>
+    <description>Recent content in Projects on Crime By The Numbers</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <copyright>&amp;copy; 2017 Your Name</copyright>
-    <lastBuildDate>Wed, 27 Apr 2016 00:00:00 +0000</lastBuildDate>
+    <copyright>&amp;copy; 2017 Jacob Kaplan</copyright>
+    <lastBuildDate>Wed, 21 Mar 2018 00:00:00 +0000</lastBuildDate>
     <atom:link href="/project/" rel="self" type="application/rss+xml" />
     
     <item>
-      <title>Deep Learning</title>
-      <link>/project/deep-learning/</link>
-      <pubDate>Wed, 27 Apr 2016 00:00:00 +0000</pubDate>
+      <title>United States Governors 1775-2018</title>
+      <link>/project/united-states-governors-1775-2018/</link>
+      <pubDate>Wed, 21 Mar 2018 00:00:00 +0000</pubDate>
       
-      <guid>/project/deep-learning/</guid>
-      <description>&lt;p&gt;Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis posuere tellus ac convallis placerat. Proin tincidunt magna sed ex sollicitudin condimentum. Sed ac faucibus dolor, scelerisque sollicitudin nisi. Cras purus urna, suscipit quis sapien eu, pulvinar tempor diam. Quisque risus orci, mollis id ante sit amet, gravida egestas nisl. Sed ac tempus magna. Proin in dui enim. Donec condimentum, sem id dapibus fringilla, tellus enim condimentum arcu, nec volutpat est felis vel metus. Vestibulum sit amet erat at nulla eleifend gravida.&lt;/p&gt;
-
-&lt;p&gt;Nullam vel molestie justo. Curabitur vitae efficitur leo. In hac habitasse platea dictumst. Sed pulvinar mauris dui, eget varius purus congue ac. Nulla euismod, lorem vel elementum dapibus, nunc justo porta mi, sed tempus est est vel tellus. Nam et enim eleifend, laoreet sem sit amet, elementum sem. Morbi ut leo congue, maximus velit ut, finibus arcu. In et libero cursus, rutrum risus non, molestie leo. Nullam congue quam et volutpat malesuada. Sed risus tortor, pulvinar et dictum nec, sodales non mi. Phasellus lacinia commodo laoreet. Nam mollis, erat in feugiat consectetur, purus eros egestas tellus, in auctor urna odio at nibh. Mauris imperdiet nisi ac magna convallis, at rhoncus ligula cursus.&lt;/p&gt;
-
-&lt;p&gt;Cras aliquam rhoncus ipsum, in hendrerit nunc mattis vitae. Duis vitae efficitur metus, ac tempus leo. Cras nec fringilla lacus. Quisque sit amet risus at ipsum pharetra commodo. Sed aliquam mauris at consequat eleifend. Praesent porta, augue sed viverra bibendum, neque ante euismod ante, in vehicula justo lorem ac eros. Suspendisse augue libero, venenatis eget tincidunt ut, malesuada at lorem. Donec vitae bibendum arcu. Aenean maximus nulla non pretium iaculis. Quisque imperdiet, nulla in pulvinar aliquet, velit quam ultrices quam, sit amet fringilla leo sem vel nunc. Mauris in lacinia lacus.&lt;/p&gt;
-
-&lt;p&gt;Suspendisse a tincidunt lacus. Curabitur at urna sagittis, dictum ante sit amet, euismod magna. Sed rutrum massa id tortor commodo, vitae elementum turpis tempus. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean purus turpis, venenatis a ullamcorper nec, tincidunt et massa. Integer posuere quam rutrum arcu vehicula imperdiet. Mauris ullamcorper quam vitae purus congue, quis euismod magna eleifend. Vestibulum semper vel augue eget tincidunt. Fusce eget justo sodales, dapibus odio eu, ultrices lorem. Duis condimentum lorem id eros commodo, in facilisis mauris scelerisque. Morbi sed auctor leo. Nullam volutpat a lacus quis pharetra. Nulla congue rutrum magna a ornare.&lt;/p&gt;
-
-&lt;p&gt;Aliquam in turpis accumsan, malesuada nibh ut, hendrerit justo. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Quisque sed erat nec justo posuere suscipit. Donec ut efficitur arcu, in malesuada neque. Nunc dignissim nisl massa, id vulputate nunc pretium nec. Quisque eget urna in risus suscipit ultricies. Pellentesque odio odio, tincidunt in eleifend sed, posuere a diam. Nam gravida nisl convallis semper elementum. Morbi vitae felis faucibus, vulputate orci placerat, aliquet nisi. Aliquam erat volutpat. Maecenas sagittis pulvinar purus, sed porta quam laoreet at.&lt;/p&gt;
+      <guid>/project/united-states-governors-1775-2018/</guid>
+      <description>&lt;p&gt;This is a data set containing the name and party of every state or territory governor from the start of this country (technically 1775) to 2018.&lt;/p&gt;
+&lt;p&gt;The original data (link below) had governor as the unit. It gave the governor’s name, the state, the party (or parties) they belonged to and which years they were in office. I changed this to state-year unit so for each state and year it says who the governor was and their party. For years 1950-2018 I made minor changes to the party variable. For example, if a governor (e.g. Ronald Reagan) was reported as belonging to multiple parties in their life, I changed the party for a given year to the party they belonged to that year. I DID NOT make any changes at all for years prior to 1950.&lt;/p&gt;
+&lt;p&gt;As an example, here is the first 6 rows of the data.&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr class=&#34;header&#34;&gt;
+&lt;th align=&#34;left&#34;&gt;governor&lt;/th&gt;
+&lt;th align=&#34;left&#34;&gt;state&lt;/th&gt;
+&lt;th align=&#34;right&#34;&gt;year&lt;/th&gt;
+&lt;th align=&#34;left&#34;&gt;party&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr class=&#34;odd&#34;&gt;
+&lt;td align=&#34;left&#34;&gt;Bill Walker&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;Alaska&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;2018&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;Independent&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;even&#34;&gt;
+&lt;td align=&#34;left&#34;&gt;Lolo Matalasi Moliga&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;American Samoa&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;2018&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;Independent&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;odd&#34;&gt;
+&lt;td align=&#34;left&#34;&gt;Doug Ducey&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;Arizona&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;2018&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;Republican&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;even&#34;&gt;
+&lt;td align=&#34;left&#34;&gt;Asa Hutchinson&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;Arkansas&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;2018&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;Republican&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;odd&#34;&gt;
+&lt;td align=&#34;left&#34;&gt;Edmund G. Brown&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;California&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;2018&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;Democrat&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;even&#34;&gt;
+&lt;td align=&#34;left&#34;&gt;John Hickenlooper&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;Colorado&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;2018&lt;/td&gt;
+&lt;td align=&#34;left&#34;&gt;Democrat&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;The data is &lt;a href=&#34;https://www.openicpsr.org/openicpsr/project/102000/version/V1/view&#34;&gt;here&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;The website where I got the raw data is &lt;a href=&#34;https://www.nga.org/cms/home&#34;&gt;here&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;The GitHub page containing code to download and clean the data is &lt;a href=&#34;https://github.com/jacobkap/governors&#34;&gt;here&lt;/a&gt;.&lt;/p&gt;
 </description>
     </item>
     
     <item>
-      <title>External Project</title>
-      <link>/project/example-external-project/</link>
-      <pubDate>Wed, 27 Apr 2016 00:00:00 +0000</pubDate>
+      <title>asciiSetupReader</title>
+      <link>/project/asciisetupreader/</link>
+      <pubDate>Wed, 21 Mar 2018 00:00:00 +0000</pubDate>
       
-      <guid>/project/example-external-project/</guid>
+      <guid>/project/asciisetupreader/</guid>
       <description></description>
+    </item>
+    
+    <item>
+      <title>fastDummies</title>
+      <link>/project/fastdummies/</link>
+      <pubDate>Wed, 21 Mar 2018 00:00:00 +0000</pubDate>
+      
+      <guid>/project/fastdummies/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Downloading data from the FBI&#39;s UCR 2016</title>
+      <link>/project/downloading-data-from-the-fbi-ucr-2016/</link>
+      <pubDate>Tue, 20 Mar 2018 00:00:00 +0000</pubDate>
+      
+      <guid>/project/downloading-data-from-the-fbi-ucr-2016/</guid>
+      <description>&lt;p&gt;The FBI has recently (September 2017) released the raw files for UCR data for 2016. As usual, these files are in fixed-width ASCII files and do not come with a usable setup file. To make this data accessible, I made those setup files using the codebook provided by the FBI along with the raw data. Using the R package asciiSetupReader, I read the data into R and saved it in a number of data formats. These cleaned files are now available at openICPSR. Below are the links to the openICPSR page for each of the files as well as the formats available. After that is a brief methodology section for how I created the setup files and checked for accuracy.&lt;/p&gt;
+&lt;div id=&#34;files-available&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Files Available&lt;/h2&gt;
+&lt;p&gt;&lt;a href=&#34;https://www.openicpsr.org/openicpsr/project/101126/version/V1/view&#34;&gt;Arrests by Age, Sex, and Race, 2016&lt;/a&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;R&lt;/li&gt;
+&lt;li&gt;CSV&lt;/li&gt;
+&lt;li&gt;Stata&lt;/li&gt;
+&lt;li&gt;SPSS&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;div id=&#34;methodology&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Methodology&lt;/h2&gt;
+&lt;p&gt;When they send the raw data, the FBI includes a codebook for understanding the data. While close, this codebook is not a setup file. To read fixed-width ASCII files, you need a setup file explaining how to break up each row into the appropriate columns. I used the codebook to produce a setup file in the SPSS style. Then, using the package asciiSetupReader, read the raw data into R. This raw data was then saved as a few different file types (see above). ICPSR provides cleaned (i.e. not raw) data for UCR data up until 2015 (2016 is not yet available). I used this data to compare my setup reader against. I used asciiSetupReader to read in 2015 data and compared that against 2015 data from ICPSR to ensure it was accurate.&lt;/p&gt;
+&lt;p&gt;For the exact code used to produce the setup files and check for accuracy, see my GitHub page &lt;a href=&#34;https://github.com/jacobkap/UCR2016/tree/master/R&#34;&gt;here&lt;/a&gt;.&lt;/p&gt;
+&lt;/div&gt;
+</description>
     </item>
     
   </channel>
