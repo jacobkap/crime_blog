@@ -11,17 +11,17 @@
     <atom:link href="/post/" rel="self" type="application/rss+xml" />
     
     <item>
-      <title>The Importantance of Using Consistent Agencies in Crime Analysis</title>
-      <link>/the-importantance-of-using-consistent-agencies-in-crime-analysis/</link>
+      <title>The Importance of Using Consistent Agencies in Crime Analysis</title>
+      <link>/the-importance-of-using-consistent-agencies-in-crime-analysis/</link>
       <pubDate>Wed, 28 Mar 2018 00:00:00 +0000</pubDate>
       
-      <guid>/the-importantance-of-using-consistent-agencies-in-crime-analysis/</guid>
+      <guid>/the-importance-of-using-consistent-agencies-in-crime-analysis/</guid>
       <description>&lt;p&gt;An important but often overlooked fact of crime analysis is that crime data changes every year. I don’t mean that crime changes every year, though of course it does. The data itself changes. More specifically, the agencies that report data change. Each year, different police agencies report their data to the FBI.&lt;/p&gt;
 &lt;p&gt;This means that we can’t simply compare UCR data in 2016 to UCR data from 2015. 2016 has different agencies to 2015 so it isn’t an apples-to-apples comparison. To properly measure crime over time, we need to only use agencies that report every year studied. In most cases that means just using the agencies that reported during the first year. However, some years actually have agencies stop reporting.&lt;/p&gt;
 &lt;p&gt;Usually once an agency begins reporting, they keep reporting. This leads to a fairly consistent growth of the number of reporting agencies over time. This increase in agencies also comes with an increase in crimes these new agencies report. Forgetting to exclude new agencies when comparing to previous years will incorrectly show an increase (or a more exaggerated increase) in crime that may not be real.&lt;/p&gt;
 &lt;p&gt;Figure 1 shows the number of reporting agencies to the UCR since 1960. The earliest data shows about 8,000 reporting agencies while modern data contains over 25,000 agencies. Following a spike in reporting agencies during the 1970s, the growth in the number of agencies has been fairly linearly positive. As most large agencies began reporting fairly early, these new agencies are often small and have fairly few crimes per year. This lessens the impact of not using consistent ORIs as the additional agencies contribute relatively little crime overall. Over a long period, however, even small additions in crime can have a large effect in our data. Figures 2 and 3 look into precisely that effect using murder as an example.&lt;/p&gt;
 &lt;div class=&#34;figure&#34;&gt;&lt;span id=&#34;fig:unnamed-chunk-2&#34;&gt;&lt;/span&gt;
-&lt;img src=&#34;/post/2018-03-28-the-important-of-consistent-agencies-in-crime-analysis_files/figure-html/unnamed-chunk-2-1.png&#34; alt=&#34;Total number of ORIs reporting UCR data 1960-2016.&#34; width=&#34;672&#34; /&gt;
+&lt;img src=&#34;/post/consistent_ORIs_files/figure-html/unnamed-chunk-2-1.png&#34; alt=&#34;Total number of ORIs reporting UCR data 1960-2016.&#34; width=&#34;672&#34; /&gt;
 &lt;p class=&#34;caption&#34;&gt;
 Figure 1: Total number of ORIs reporting UCR data 1960-2016.
 &lt;/p&gt;
@@ -29,21 +29,21 @@ Figure 1: Total number of ORIs reporting UCR data 1960-2016.
 &lt;p&gt;Figure 2 shows how many additional murders were reported across all agencies from 1990-2016 relative to consistent ORIs starting from 1990. Even in 1990 itself there is a slight difference, with about 25 more murders in total ORIs than in consistent ORIs. This is because some agencies stopped reporting sometime between 1990 and 2016, and thus are excluded from the consistent ORIs.&lt;/p&gt;
 &lt;p&gt;As the years progress the disparity between total ORIs and consistent ORIs expands. This culminates in over 500 more murders using all 2016 ORIs relative to just consistent ORIs from 1990. The further back you go as your starting year, the greater number of crimes you’ll erroneously include if you forget to use consistent ORIs.&lt;/p&gt;
 &lt;div class=&#34;figure&#34;&gt;&lt;span id=&#34;fig:unnamed-chunk-3&#34;&gt;&lt;/span&gt;
-&lt;img src=&#34;/post/2018-03-28-the-important-of-consistent-agencies-in-crime-analysis_files/figure-html/unnamed-chunk-3-1.png&#34; alt=&#34;Number of additional murders reporting by all ORIs 1990-2016 relative to consistent ORIs starting in 1990.&#34; width=&#34;672&#34; /&gt;
+&lt;img src=&#34;/post/consistent_ORIs_files/figure-html/unnamed-chunk-3-1.png&#34; alt=&#34;Number of additional murders reporting by all ORIs 1990-2016 relative to consistent ORIs starting in 1990.&#34; width=&#34;672&#34; /&gt;
 &lt;p class=&#34;caption&#34;&gt;
 Figure 2: Number of additional murders reporting by all ORIs 1990-2016 relative to consistent ORIs starting in 1990.
 &lt;/p&gt;
 &lt;/div&gt;
 &lt;p&gt;This figure shows the same data as Figure 2 but now is in percent difference units rather than raw counts. By 2016, that 500 murder increase is slightly more than a 3% increase in yearly murders purely due to the new ORIs.&lt;/p&gt;
 &lt;div class=&#34;figure&#34;&gt;&lt;span id=&#34;fig:unnamed-chunk-4&#34;&gt;&lt;/span&gt;
-&lt;img src=&#34;/post/2018-03-28-the-important-of-consistent-agencies-in-crime-analysis_files/figure-html/unnamed-chunk-4-1.png&#34; alt=&#34;Percent increase in additional murders reporting by all ORIs 1990-2016 relative to consistent ORIs starting in 1990.&#34; width=&#34;672&#34; /&gt;
+&lt;img src=&#34;/post/consistent_ORIs_files/figure-html/unnamed-chunk-4-1.png&#34; alt=&#34;Percent increase in additional murders reporting by all ORIs 1990-2016 relative to consistent ORIs starting in 1990.&#34; width=&#34;672&#34; /&gt;
 &lt;p class=&#34;caption&#34;&gt;
 Figure 3: Percent increase in additional murders reporting by all ORIs 1990-2016 relative to consistent ORIs starting in 1990.
 &lt;/p&gt;
 &lt;/div&gt;
 &lt;p&gt;This final figure shows year-over-year change in ORIs. It’s fairly similar to Figure 1 in that they both show an increasing trend. This figure shows that some agencies drop from reporting. This is important. Forgetting to using only consistent ORIs not only overounts the data, but in some cases may undercount data. For example, 1998 saw a drop of over 500 agencies from the UCR data. These agencies were mostly small, in Florida or New York, and many returned to the UCR a few years later.&lt;/p&gt;
 &lt;div class=&#34;figure&#34;&gt;&lt;span id=&#34;fig:unnamed-chunk-5&#34;&gt;&lt;/span&gt;
-&lt;img src=&#34;/post/2018-03-28-the-important-of-consistent-agencies-in-crime-analysis_files/figure-html/unnamed-chunk-5-1.png&#34; alt=&#34;Year-over-year change in ORIs reporting to UCR, 1990-2016.&#34; width=&#34;672&#34; /&gt;
+&lt;img src=&#34;/post/consistent_ORIs_files/figure-html/unnamed-chunk-5-1.png&#34; alt=&#34;Year-over-year change in ORIs reporting to UCR, 1990-2016.&#34; width=&#34;672&#34; /&gt;
 &lt;p class=&#34;caption&#34;&gt;
 Figure 4: Year-over-year change in ORIs reporting to UCR, 1990-2016.
 &lt;/p&gt;

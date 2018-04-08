@@ -1,8 +1,8 @@
 ---
-title: The Importantance of Using Consistent Agencies in Crime Analysis
+title: The Importance of Using Consistent Agencies in Crime Analysis
 author: Jacob Kaplan
 date: '2018-03-28'
-slug: the-importantance-of-using-consistent-agencies-in-crime-analysis
+slug: the-importance-of-using-consistent-agencies-in-crime-analysis
 categories:
   - Data
 tags:
