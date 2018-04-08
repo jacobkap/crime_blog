@@ -1,0 +1,13 @@
+---
+title: "UCR Data Tool"
+author: "Jacob Kaplan"
+date: "2018-03-21"
+slug: ucrdatatool
+categories:
+  - Data
+tags:
+  - other-data
+summary: "Analyze UCR data online"
+---
+
+<iframe src="https://kaplan.shinyapps.io/ucrdatatool/" style="position:fixed; top:75px; left:0px; bottom:0px; right:0px; width:100%; height:100%; margin:0; padding:0; overflow:hidden; z-index:999999;"></iframe>

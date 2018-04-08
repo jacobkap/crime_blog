@@ -11,6 +11,59 @@
     <atom:link href="/" rel="self" type="application/rss+xml" />
     
     <item>
+      <title>The Importantance of Using Consistent Agencies in Crime Analysis</title>
+      <link>/the-importantance-of-using-consistent-agencies-in-crime-analysis/</link>
+      <pubDate>Wed, 28 Mar 2018 00:00:00 +0000</pubDate>
+      
+      <guid>/the-importantance-of-using-consistent-agencies-in-crime-analysis/</guid>
+      <description>&lt;p&gt;An important but often overlooked fact of crime analysis is that crime data changes every year. I don’t mean that crime changes every year, though of course it does. The data itself changes. More specifically, the agencies that report data change. Each year, different police agencies report their data to the FBI.&lt;/p&gt;
+&lt;p&gt;This means that we can’t simply compare UCR data in 2016 to UCR data from 2015. 2016 has different agencies to 2015 so it isn’t an apples-to-apples comparison. To properly measure crime over time, we need to only use agencies that report every year studied. In most cases that means just using the agencies that reported during the first year. However, some years actually have agencies stop reporting.&lt;/p&gt;
+&lt;p&gt;Usually once an agency begins reporting, they keep reporting. This leads to a fairly consistent growth of the number of reporting agencies over time. This increase in agencies also comes with an increase in crimes these new agencies report. Forgetting to exclude new agencies when comparing to previous years will incorrectly show an increase (or a more exaggerated increase) in crime that may not be real.&lt;/p&gt;
+&lt;p&gt;Figure 1 shows the number of reporting agencies to the UCR since 1960. The earliest data shows about 8,000 reporting agencies while modern data contains over 25,000 agencies. Following a spike in reporting agencies during the 1970s, the growth in the number of agencies has been fairly linearly positive. As most large agencies began reporting fairly early, these new agencies are often small and have fairly few crimes per year. This lessens the impact of not using consistent ORIs as the additional agencies contribute relatively little crime overall. Over a long period, however, even small additions in crime can have a large effect in our data. Figures 2 and 3 look into precisely that effect using murder as an example.&lt;/p&gt;
+&lt;div class=&#34;figure&#34;&gt;&lt;span id=&#34;fig:unnamed-chunk-2&#34;&gt;&lt;/span&gt;
+&lt;img src=&#34;/post/2018-03-28-the-important-of-consistent-agencies-in-crime-analysis_files/figure-html/unnamed-chunk-2-1.png&#34; alt=&#34;Total number of ORIs reporting UCR data 1960-2016.&#34; width=&#34;672&#34; /&gt;
+&lt;p class=&#34;caption&#34;&gt;
+Figure 1: Total number of ORIs reporting UCR data 1960-2016.
+&lt;/p&gt;
+&lt;/div&gt;
+&lt;p&gt;Figure 2 shows how many additional murders were reported across all agencies from 1990-2016 relative to consistent ORIs starting from 1990. Even in 1990 itself there is a slight difference, with about 25 more murders in total ORIs than in consistent ORIs. This is because some agencies stopped reporting sometime between 1990 and 2016, and thus are excluded from the consistent ORIs.&lt;/p&gt;
+&lt;p&gt;As the years progress the disparity between total ORIs and consistent ORIs expands. This culminates in over 500 more murders using all 2016 ORIs relative to just consistent ORIs from 1990. The further back you go as your starting year, the greater number of crimes you’ll erroneously include if you forget to use consistent ORIs.&lt;/p&gt;
+&lt;div class=&#34;figure&#34;&gt;&lt;span id=&#34;fig:unnamed-chunk-3&#34;&gt;&lt;/span&gt;
+&lt;img src=&#34;/post/2018-03-28-the-important-of-consistent-agencies-in-crime-analysis_files/figure-html/unnamed-chunk-3-1.png&#34; alt=&#34;Number of additional murders reporting by all ORIs 1990-2016 relative to consistent ORIs starting in 1990.&#34; width=&#34;672&#34; /&gt;
+&lt;p class=&#34;caption&#34;&gt;
+Figure 2: Number of additional murders reporting by all ORIs 1990-2016 relative to consistent ORIs starting in 1990.
+&lt;/p&gt;
+&lt;/div&gt;
+&lt;p&gt;This figure shows the same data as Figure 2 but now is in percent difference units rather than raw counts. By 2016, that 500 murder increase is slightly more than a 3% increase in yearly murders purely due to the new ORIs.&lt;/p&gt;
+&lt;div class=&#34;figure&#34;&gt;&lt;span id=&#34;fig:unnamed-chunk-4&#34;&gt;&lt;/span&gt;
+&lt;img src=&#34;/post/2018-03-28-the-important-of-consistent-agencies-in-crime-analysis_files/figure-html/unnamed-chunk-4-1.png&#34; alt=&#34;Percent increase in additional murders reporting by all ORIs 1990-2016 relative to consistent ORIs starting in 1990.&#34; width=&#34;672&#34; /&gt;
+&lt;p class=&#34;caption&#34;&gt;
+Figure 3: Percent increase in additional murders reporting by all ORIs 1990-2016 relative to consistent ORIs starting in 1990.
+&lt;/p&gt;
+&lt;/div&gt;
+&lt;p&gt;This final figure shows year-over-year change in ORIs. It’s fairly similar to Figure 1 in that they both show an increasing trend. This figure shows that some agencies drop from reporting. This is important. Forgetting to using only consistent ORIs not only overounts the data, but in some cases may undercount data. For example, 1998 saw a drop of over 500 agencies from the UCR data. These agencies were mostly small, in Florida or New York, and many returned to the UCR a few years later.&lt;/p&gt;
+&lt;div class=&#34;figure&#34;&gt;&lt;span id=&#34;fig:unnamed-chunk-5&#34;&gt;&lt;/span&gt;
+&lt;img src=&#34;/post/2018-03-28-the-important-of-consistent-agencies-in-crime-analysis_files/figure-html/unnamed-chunk-5-1.png&#34; alt=&#34;Year-over-year change in ORIs reporting to UCR, 1990-2016.&#34; width=&#34;672&#34; /&gt;
+&lt;p class=&#34;caption&#34;&gt;
+Figure 4: Year-over-year change in ORIs reporting to UCR, 1990-2016.
+&lt;/p&gt;
+&lt;/div&gt;
+&lt;p&gt;Criminologists (and anyone who works with crime data) need to be careful with how we treat data. Almost all data we use (FBI data in particular) is messy, incompletely, and difficult to work with. Fixing the data properly is hard. Taking shortcuts like using all ORIs is easy and usually doesn’t change the results too much. But it is wrong. More importantly, it gives wrong results. As current public discussions of crime often gets facts wrong, it is necessary that we spend the time to do data work properly to contribute meaningful data and results.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>UCR Data Tool</title>
+      <link>/project/ucrdatatool/</link>
+      <pubDate>Wed, 21 Mar 2018 00:00:00 +0000</pubDate>
+      
+      <guid>/project/ucrdatatool/</guid>
+      <description>&lt;iframe src=&#34;https://kaplan.shinyapps.io/ucrdatatool/&#34; style=&#34;position:fixed; top:75px; left:0px; bottom:0px; right:0px; width:100%; height:100%; margin:0; padding:0; overflow:hidden; z-index:999999;&#34;&gt;
+&lt;/iframe&gt;
+</description>
+    </item>
+    
+    <item>
       <title>United States Governors 1775-2018</title>
       <link>/project/united-states-governors-1775-2018/</link>
       <pubDate>Wed, 21 Mar 2018 00:00:00 +0000</pubDate>
@@ -89,31 +142,6 @@
       
       <guid>/project/fastdummies/</guid>
       <description></description>
-    </item>
-    
-    <item>
-      <title>Downloading data from the FBI&#39;s UCR 2016</title>
-      <link>/project/downloading-data-from-the-fbi-ucr-2016/</link>
-      <pubDate>Tue, 20 Mar 2018 00:00:00 +0000</pubDate>
-      
-      <guid>/project/downloading-data-from-the-fbi-ucr-2016/</guid>
-      <description>&lt;p&gt;The FBI has recently (September 2017) released the raw files for UCR data for 2016. As usual, these files are in fixed-width ASCII files and do not come with a usable setup file. To make this data accessible, I made those setup files using the codebook provided by the FBI along with the raw data. Using the R package asciiSetupReader, I read the data into R and saved it in a number of data formats. These cleaned files are now available at openICPSR. Below are the links to the openICPSR page for each of the files as well as the formats available. After that is a brief methodology section for how I created the setup files and checked for accuracy.&lt;/p&gt;
-&lt;div id=&#34;files-available&#34; class=&#34;section level2&#34;&gt;
-&lt;h2&gt;Files Available&lt;/h2&gt;
-&lt;p&gt;&lt;a href=&#34;https://www.openicpsr.org/openicpsr/project/101126/version/V1/view&#34;&gt;Arrests by Age, Sex, and Race, 2016&lt;/a&gt;&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;R&lt;/li&gt;
-&lt;li&gt;CSV&lt;/li&gt;
-&lt;li&gt;Stata&lt;/li&gt;
-&lt;li&gt;SPSS&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/div&gt;
-&lt;div id=&#34;methodology&#34; class=&#34;section level2&#34;&gt;
-&lt;h2&gt;Methodology&lt;/h2&gt;
-&lt;p&gt;When they send the raw data, the FBI includes a codebook for understanding the data. While close, this codebook is not a setup file. To read fixed-width ASCII files, you need a setup file explaining how to break up each row into the appropriate columns. I used the codebook to produce a setup file in the SPSS style. Then, using the package asciiSetupReader, read the raw data into R. This raw data was then saved as a few different file types (see above). ICPSR provides cleaned (i.e. not raw) data for UCR data up until 2015 (2016 is not yet available). I used this data to compare my setup reader against. I used asciiSetupReader to read in 2015 data and compared that against 2015 data from ICPSR to ensure it was accurate.&lt;/p&gt;
-&lt;p&gt;For the exact code used to produce the setup files and check for accuracy, see my GitHub page &lt;a href=&#34;https://github.com/jacobkap/UCR2016/tree/master/R&#34;&gt;here&lt;/a&gt;.&lt;/p&gt;
-&lt;/div&gt;
-</description>
     </item>
     
     <item>
@@ -287,14 +315,6 @@ kable(mtcars_small, caption = &amp;quot;This is an example table caption&amp;quo
 &lt;p class=&#34;caption&#34;&gt;Change the output format&lt;/p&gt;
 &lt;/div&gt;
 &lt;p&gt;Markdown has many more options than presented here. This lesson should get you through the thesis. If you are interested in Markdown, there are great resources online.&lt;/p&gt;
-&lt;p&gt;Future lessons:&lt;/p&gt;
-&lt;ol style=&#34;list-style-type: decimal&#34;&gt;
-&lt;li&gt;Citations&lt;br /&gt;
-&lt;/li&gt;
-&lt;li&gt;Fancy tables&lt;br /&gt;
-&lt;/li&gt;
-&lt;li&gt;Referencing figures and tables&lt;/li&gt;
-&lt;/ol&gt;
 &lt;/div&gt;
 </description>
     </item>

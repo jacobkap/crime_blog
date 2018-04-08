@@ -127,9 +127,3 @@ To create the Word or PDF output click `Knit` and it will create the output in t
 ![Change the output format](/img/markdown_images/markdown4.PNG)
 
 Markdown has many more options than presented here. This lesson should get you through the thesis. If you are interested in Markdown, there are great resources online.
-
-Future lessons:
-
-1. Citations    
-2. Fancy tables    
-3. Referencing figures and tables

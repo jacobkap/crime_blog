@@ -1,0 +1,151 @@
+---
+title: The Importantance of Using Consistent Agencies in Crime Analysis
+author: Jacob Kaplan
+date: '2018-03-28'
+slug: the-importantance-of-using-consistent-agencies-in-crime-analysis
+categories:
+  - Data
+tags:
+  - FBI
+  - Crime
+  - Data
+---
+
+```{r echo = FALSE, message = FALSE, warning = FALSE}
+library(ggplot2)
+library(ggthemes)
+library(dplyr)
+load("data/UCR_offenses_known_yearly_1960_2016.rda")
+ucr <- UCR_offenses_known_yearly_1960_2016
+rm(UCR_offenses_known_yearly_1960_2016)
+
+get_ORIs <- function(data, year) {
+  ORIs <- c()
+  for (year in year:2016) {
+    temp <- data$ORI[data$YEAR == year]
+    if (length(ORIs) == 0) {
+      ORIs <- unique(temp)
+    } else {
+      ORIs <- ORIs[ORIs %in% temp]
+    }
+  }
+  return(ORIs)
+}
+```
+
+An important but often overlooked fact of crime analysis is that crime data changes every year. I don't mean that crime changes every year, though of course it does. The data itself changes. More specifically, the agencies that report data change. Each year, different police agencies report their data to the FBI. 
+
+This means that we can't simply compare UCR data in 2016 to UCR data from 2015. 2016 has different agencies to 2015 so it isn't an apples-to-apples comparison. To properly measure crime over time, we need to only use agencies that report every year studied. In most cases that means just using the agencies that reported during the first year. However, some years actually have agencies stop reporting. 
+
+Usually once an agency begins reporting, they keep reporting. This leads to a fairly consistent growth of the number of reporting agencies over time. This increase in agencies also comes with an increase in crimes these new agencies report. Forgetting to exclude new agencies when comparing to previous years will incorrectly show an increase (or a more exaggerated increase) in crime that may not be real. 
+
+Figure 1 shows the number of reporting agencies to the UCR since 1960. The earliest data shows about 8,000 reporting agencies while modern data contains over 25,000 agencies. Following a spike in reporting agencies during the 1970s, the growth in the number of agencies has been fairly linearly positive. As most large agencies began reporting fairly early, these new agencies are often small and have fairly few crimes per year. This lessens the impact of not using consistent ORIs as the additional agencies contribute relatively little crime overall. Over a long period, however, even small additions in crime can have a large effect in our data. Figures 2 and 3 look into precisely that effect using murder as an example.
+
+```{r echo = FALSE, message = FALSE, warning = FALSE, fig.cap = "Total number of ORIs reporting UCR data 1960-2016."}
+
+total_num_agencies <- function(data, year) {
+  ORI_changes <- data.frame(matrix(ncol = 2,
+                                   nrow = (length(year:2016))))
+  names(ORI_changes) <- c("Year", "Agencies")
+  ORI_changes$Year <- year:2016
+  for (i in year:2016) {
+    ORI_changes$Agencies[ORI_changes$Year == i] <-
+      length(unique(data$ORI[data$YEAR == i]))
+  }
+
+  ggplot(ORI_changes, aes(x = Year, y = Agencies)) +
+    geom_line(size = 1.2) +
+    ylab("# of Agencies") +
+    ggtitle("Total Agencies in Reporting UCR Data") +
+    theme_minimal(base_size = 15)
+}
+total_num_agencies(ucr, 1960)
+```
+
+Figure 2 shows how many additional murders were reported across all agencies from 1990-2016 relative to consistent ORIs starting from 1990. Even in 1990 itself there is a slight difference, with about 25 more murders in total ORIs than in consistent ORIs. This is because some agencies stopped reporting sometime between 1990 and 2016, and thus are excluded from the consistent ORIs. 
+
+As the years progress the disparity between total ORIs and consistent ORIs expands. This culminates in over 500 more murders using all 2016 ORIs relative to just consistent ORIs from 1990. The further back you go as your starting year, the greater number of crimes you'll erroneously include if you forget to use consistent ORIs. 
+
+```{r echo = FALSE, message = FALSE, warning = FALSE, fig.cap = "Number of additional murders reporting by all ORIs 1990-2016 relative to consistent ORIs starting in 1990."}
+consistent_ORIs_example <- function(year, crime, percent = FALSE) {
+  oris = get_ORIs(ucr, year)
+  ucr2 <- ucr[ucr$YEAR >= year, ]
+  consistent <- ucr2 %>% filter(ORI %in% oris)
+
+
+  ucr2 <- ucr2 %>%
+    group_by(YEAR) %>%
+    summarize(crime = sum(get(crime), na.rm = TRUE)) %>%
+    mutate(Year = as.numeric(YEAR))
+  consistent <- consistent %>%
+    group_by(YEAR) %>%
+    summarize(crime = sum(get(crime), na.rm = TRUE)) %>%
+    mutate(Year = as.numeric(YEAR))
+
+  if (percent) {
+    ucr2$original_crime <- consistent$crime
+    ucr2$crime <- ((ucr2$crime - ucr2$original_crime) / ucr2$original_crime) * 100
+    ylab_title <- "% Additional Crimes"
+    gg_title <- "% Change Relative to Consistent Data"
+  } else {
+    ucr2$crime <- ucr2$crime - consistent$crime
+    ylab_title <- "# of Additional Crimes"
+    gg_title <- "Crime Change Relative to Consistent Data"
+  }
+  ucr2 %>%
+    ggplot(aes(x = Year, y = crime)) +
+    geom_line(size = 1.2) +
+    ylab(ylab_title) +
+    ggtitle(gg_title,
+            subtitle = "Murder") +
+    theme_minimal(base_size = 15)
+
+}
+consistent_ORIs_example(2000, "ACT_MURDER")
+```
+
+This figure shows the same data as Figure 2 but now is in percent difference units rather than raw counts. By 2016, that 500 murder increase is slightly more than a 3% increase in yearly murders purely due to the new ORIs.    
+
+```{r echo = FALSE, message = FALSE, warning = FALSE, fig.cap = "Percent increase in additional murders reporting by all ORIs 1990-2016 relative to consistent ORIs starting in 1990."}
+consistent_ORIs_example(2000, "ACT_MURDER", percent = TRUE)
+```
+
+This final figure shows year-over-year change in ORIs. It's fairly similar to Figure 1 in that they both show an increasing trend. This figure shows that some agencies drop from reporting. This is important. Forgetting to using only consistent ORIs not only overounts the data, but in some cases may undercount data. For example, 1998 saw a drop of over 500 agencies from the UCR data. These agencies were mostly small, in Florida or New York, and many returned to the UCR a few years later. 
+
+```{r echo = FALSE, message = FALSE, warning = FALSE, fig.cap = "Year-over-year change in ORIs reporting to UCR, 1990-2016."}
+ORI_changes_func <- function(data, year) {
+  ORIs <- c()
+  ORI_changes <- data.frame(matrix(ncol = 3,
+                                   nrow = (length(year:2016)*2)))
+  names(ORI_changes) <- c("Year", "Change", "Direction")
+  ORI_changes$Year <-  sort(rep(year:2016, 2))
+  ORI_changes$Direction <- rep(c("Positive", "Negative"),
+                               nrow(ORI_changes) / 2)
+  for (year in year:2016) {
+    temp <- data$ORI[data$YEAR == year]
+    if (length(ORIs) == 0) {
+      ORIs <- unique(temp)
+    }
+    additions <- length(temp[!temp %in% ORIs])
+    removals <- length(ORIs[!ORIs %in% temp])
+    ORIs <- unique(temp)
+
+
+    ORI_changes$Change[ORI_changes$Direction == "Positive" &
+                         ORI_changes$Year == year] <- additions
+    ORI_changes$Change[ORI_changes$Direction == "Negative" &
+                         ORI_changes$Year == year] <- (removals * -1)
+  }
+
+  ggplot(ORI_changes, aes(x = Year, y = Change, fill = Direction)) +
+    geom_bar(stat = "identity") +
+    theme_minimal(base_size = 15) +
+    scale_fill_manual(values = c("#e41a1c", "#377eb8")) +
+    ylab("# of Different Agencies") +
+    ggtitle("Year-Over-Year Change in ORIs") +
+    guides(fill=FALSE)
+}
+ORI_changes_func(ucr, 1990)
+```
+
+Criminologists (and anyone who works with crime data) need to be careful with how we treat data. Almost all data we use (FBI data in particular) is messy, incompletely, and difficult to work with. Fixing the data properly is hard. Taking shortcuts like using all ORIs is easy and usually doesn't change the results too much. But it is wrong. More importantly, it gives wrong results. As current public discussions of crime often gets facts wrong, it is necessary that we spend the time to do data work properly to contribute meaningful data and results. 
