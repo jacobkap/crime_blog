@@ -16,7 +16,7 @@
       <pubDate>Wed, 21 Mar 2018 00:00:00 +0000</pubDate>
       
       <guid>/project/ucrdatatool/</guid>
-      <description>&lt;iframe src=&#34;https://kaplan.shinyapps.io/ucrdatatool/&#34; style=&#34;position:fixed; top:75px; left:0px; bottom:0px; right:0px; width:100%; height:100%; margin:0; padding:0; overflow:hidden; z-index:999999;&#34;&gt;
+      <description>&lt;iframe src=&#34;https://kaplan.shinyapps.io/ucrdatatool/&#34; style=&#34;position: absolute; top:70px; left:0px; bottom:0px; right:0px; width:100%; height:100%; margin:0; padding:0; overflow:hidden; z-index:999999;&#34;&gt;
 &lt;/iframe&gt;
 </description>
     </item>
